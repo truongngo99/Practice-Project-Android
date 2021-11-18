@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Practice-Project-Android</string>
+    <string name="teq">Teq</string>
+    <string name="copyright_2021">CopyRight 2021</string>
+    <string name="image">Image</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="or">OR</string>
 </resources>
