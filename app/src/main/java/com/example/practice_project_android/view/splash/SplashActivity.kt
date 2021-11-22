@@ -1,15 +1,18 @@
 package com.example.practice_project_android.view.splash
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.practice_project_android.R
+import com.example.practice_project_android.view.login.LoginActivity
 
 import dagger.hilt.android.AndroidEntryPoint
-
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -24,7 +27,8 @@ class SplashActivity : AppCompatActivity() {
     }
     private fun observable(){
         viewModel.result.observe(this){
-            findViewById<TextView>(R.id.tv_copyright).text = it.request_token
+            val intent = Intent(this@SplashActivity, LoginActivity::class.java)
+                        startActivity(intent)
         }
     }
     private fun loadData() {
@@ -33,26 +37,6 @@ class SplashActivity : AppCompatActivity() {
 
     private fun getToken() {
 
-
-//        val reppo : Repository = Repository()
-//
-//        val retrfitData = retrofitBuider.getRequestToken()
-//        retrfitData.enqueue(object : Callback<RequestToken?> {
-//            override fun onResponse(call: Call<RequestToken?>, response: Response<RequestToken?>) {
-//                val responseBody=response.body()!!
-//                if(responseBody.success){
-//                    Timer().schedule(3000){
-//                        val intent:Intent = Intent(this@SplashActivity,LoginActivity::class.java)
-//                        startActivity(intent)
-//                    }
-//                }
-//
-//            }
-//
-//            override fun onFailure(call: Call<RequestToken?>, t: Throwable) {
-//                Toast.makeText(this@SplashActivity, "Get Token Fail",Toast.LENGTH_SHORT).show()
-//            }
-//        })
     }
 
 

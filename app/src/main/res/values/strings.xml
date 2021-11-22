@@ -7,4 +7,8 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="or">OR</string>
+    <string name="popular">Popular Movies</string>
+    <string name="up_coming_movie">Up Coming Movies</string>
+    <string name="top_rate_movies">Top Rate Movies</string>
+    <string name="now_playing_movies">Now Playing Movies</string>
 </resources>

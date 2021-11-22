@@ -1,4 +1,4 @@
-package com.example.practice_project_android.data.model
+package com.example.practice_project_android.data.model.authenticcation
 
 import com.squareup.moshi.Json
 
