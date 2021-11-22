@@ -74,7 +74,7 @@
         android:textSize="24sp"
         android:layout_marginTop="40dp"
         android:background="@drawable/custom_btn_login"/>
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativelayout_divider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -82,33 +82,29 @@
         android:layout_marginVertical="20dp"
         android:gravity="center"
         android:layout_below="@id/btn_login">
+
         <View
+            android:layout_weight="1"
             android:id="@+id/dividerLeft"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerInParent="true"
-            android:background="@color/color_edt"/>
+            android:background="@color/color_edt" />
 
         <TextView
             android:id="@+id/or"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_toEndOf="@id/dividerLeft"
             android:text="@string/or"
-            android:layout_centerInParent="true"
             android:textColor="@color/color_edt"
             android:textSize="16sp" />
 
         <View
-            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@id/or"
-            android:layout_centerInParent="true"
             android:background="@color/color_edt" />
-    </RelativeLayout>
+    </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
