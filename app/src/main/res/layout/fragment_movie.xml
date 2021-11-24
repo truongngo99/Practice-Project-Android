@@ -3,18 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:padding="10dp"
     android:background="#ff1C262f"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pagerTrendingMovie"
+            android:layout_width="330dp"
+            android:layout_height="200dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
         <TextView
             android:id="@+id/tv_popular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/popular"
+            android:textStyle="bold"
             android:textColor="@color/color_edt"
+            app:layout_constraintTop_toBottomOf="@id/pagerTrendingMovie"
             android:textSize="25sp"
             tools:ignore="MissingConstraints" />
 
@@ -22,6 +35,7 @@
             android:id="@+id/rc_movie_popular"
             android:layout_width="match_parent"
             android:layout_height="230dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/tv_popular"
@@ -34,6 +48,7 @@
             android:layout_height="wrap_content"
             android:text="@string/now_playing_movies"
             android:textColor="@color/color_edt"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/rc_movie_popular"
             android:textSize="25sp"
             tools:ignore="MissingConstraints" />
@@ -53,6 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/up_coming_movie"
+            android:textStyle="bold"
             android:textColor="@color/color_edt"
             app:layout_constraintTop_toBottomOf="@+id/rc_movie_now_playing"
             android:textSize="25sp"
@@ -74,6 +90,7 @@
             android:layout_height="wrap_content"
             android:text="@string/top_rate_movies"
             android:textColor="@color/color_edt"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/rc_movie_up_coming"
             android:textSize="25sp"
             tools:ignore="MissingConstraints" />
@@ -87,28 +104,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_top_rate"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="0dp" />
-
-        <TextView
-            android:id="@+id/tv_trending"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Trending Movies"
-            android:textColor="@color/color_edt"
-            app:layout_constraintTop_toBottomOf="@+id/rc_movie_top_rate"
-            android:textSize="25sp"
-            tools:ignore="MissingConstraints" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rc_movie_trending"
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/tv_trending"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 

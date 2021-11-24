@@ -17,7 +17,7 @@ import java.util.*
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
-   private val viewModel : SplashViewModel by viewModels()
+    private val viewModel: SplashViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_main)
@@ -25,12 +25,14 @@ class SplashActivity : AppCompatActivity() {
         loadData()
 
     }
-    private fun observable(){
-        viewModel.result.observe(this){
+
+    private fun observable() {
+        viewModel.result.observe(this) {
             val intent = Intent(this@SplashActivity, LoginActivity::class.java)
-                        startActivity(intent)
+            startActivity(intent)
         }
     }
+
     private fun loadData() {
         viewModel.getToken()
     }

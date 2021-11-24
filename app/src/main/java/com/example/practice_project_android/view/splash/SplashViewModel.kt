@@ -14,16 +14,19 @@ import javax.inject.Inject
 import android.content.Context as Context1
 
 @HiltViewModel
-class SplashViewModel @Inject constructor(private val repository: Repository): ViewModel() {
-    val result  = MutableLiveData<RequestToken>()
-    @Inject lateinit var sharedPreferences : SharedPreferences
+class SplashViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
+    val result = MutableLiveData<RequestToken>()
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
-    fun getToken(){
+    fun getToken() {
         viewModelScope.launch(Dispatchers.IO) {
-           val myRequestToken = repository.getRequestToken()
-            if (myRequestToken.success){
-                val requestTokenRepository = sharedPreferences.edit().putString("token", myRequestToken.request_token).commit()
-                withContext(Dispatchers.Main){
+            val myRequestToken = repository.getRequestToken()
+            if (myRequestToken.success) {
+                val requestTokenRepository =
+                    sharedPreferences.edit().putString("token", myRequestToken.request_token)
+                        .commit()
+                withContext(Dispatchers.Main) {
                     result.value = myRequestToken
                 }
             }

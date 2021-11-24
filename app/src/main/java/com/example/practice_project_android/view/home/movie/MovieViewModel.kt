@@ -1,9 +1,9 @@
-package com.example.practice_project_android.view.movie
+package com.example.practice_project_android.view.home.movie
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.practice_project_android.data.model.movie.Movie
+import com.example.practice_project_android.data.model.movie.Result
 import com.example.practice_project_android.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -13,25 +13,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
-    val resultMovieTrending = MutableLiveData<Movie>()
-    val resultMoviePopular = MutableLiveData<Movie>()
-    val resultMovieNowPlay = MutableLiveData<Movie>()
-    val resultMovieTopRate = MutableLiveData<Movie>()
-    val resultMovieUpCome = MutableLiveData<Movie>()
+    val resultMovieTrending = MutableLiveData<Result>()
+    val resultMoviePopular = MutableLiveData<Result>()
+    val resultMovieNowPlay = MutableLiveData<Result>()
+    val resultMovieTopRate = MutableLiveData<Result>()
+    val resultMovieUpCome = MutableLiveData<Result>()
     val failure = MutableLiveData<String>()
-    fun getListMovieTrending(){
-        viewModelScope.launch(Dispatchers.IO) {
-            val movieTrendiness = repository.getListMovieTrending()
-            try {
-                withContext(Dispatchers.Main){
-                    resultMovieTrending.value = movieTrendiness
-                }
-            } catch (e : Exception){
-                failure.value = e.toString()
-            }
-
-        }
-    }
 
     fun getListMoviePopular() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -40,7 +27,7 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
                 withContext(Dispatchers.Main) {
                     resultMoviePopular.value = moviePopular
                 }
-            } catch (e : Exception) {
+            } catch (e: Exception) {
                 failure.value = e.toString()
             }
 
@@ -54,7 +41,7 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
                 withContext(Dispatchers.Main) {
                     resultMovieNowPlay.value = movieNowPlay
                 }
-            } catch (e : Exception) {
+            } catch (e: Exception) {
                 failure.value = e.toString()
             }
 
@@ -68,12 +55,13 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
                 withContext(Dispatchers.Main) {
                     resultMovieUpCome.value = movieUpCome
                 }
-            } catch (e : Exception) {
+            } catch (e: Exception) {
                 failure.value = e.toString()
             }
 
         }
     }
+
     fun getListMovieTopRate() {
         viewModelScope.launch(Dispatchers.IO) {
             val movieTopRate = repository.getListMovieTopRate()
@@ -81,7 +69,7 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
                 withContext(Dispatchers.Main) {
                     resultMovieTopRate.value = movieTopRate
                 }
-            } catch (e : Exception) {
+            } catch (e: Exception) {
                 failure.value = e.toString()
             }
 

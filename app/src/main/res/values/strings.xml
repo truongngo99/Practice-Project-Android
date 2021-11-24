@@ -11,4 +11,8 @@
     <string name="up_coming_movie">Up Coming Movies</string>
     <string name="top_rate_movies">Top Rate Movies</string>
     <string name="now_playing_movies">Now Playing Movies</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="account">Account</string>
+    <string name="settings">Settings</string>
 </resources>

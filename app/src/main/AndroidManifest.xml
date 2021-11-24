@@ -5,17 +5,19 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".App"
         android:theme="@style/Theme.PracticeProjectAndroid">
         <activity
-            android:name=".view.login.LoginActivity"
+            android:name=".view.home.HomeActivity"
             android:exported="false" />
-        <activity android:name=".view.movie.MovieActivity"
+        <activity android:name=".view.detail.DetailActivity" />
+        <activity
+            android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".view.splash.SplashActivity"

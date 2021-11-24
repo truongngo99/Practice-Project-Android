@@ -3,16 +3,11 @@ package com.example.practice_project_android.view.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.example.practice_project_android.R
 import com.example.practice_project_android.databinding.ActivityLoginBinding
-import com.example.practice_project_android.view.movie.MovieActivity
+import com.example.practice_project_android.view.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
     }
     private fun observable(){
         viewModel.result.observe(this){
-            val intent = Intent(this, MovieActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
 
         }

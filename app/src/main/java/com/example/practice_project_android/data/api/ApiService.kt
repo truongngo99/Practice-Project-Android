@@ -3,30 +3,35 @@ package com.example.practice_project_android.data.api
 import com.example.practice_project_android.data.model.authenticcation.LoginBody
 import com.example.practice_project_android.data.model.authenticcation.RequestToken
 import com.example.practice_project_android.data.model.movie.Movie
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import com.example.practice_project_android.data.model.movie.Result
+import retrofit2.http.*
 
 interface ApiService {
-    @GET("authentication/token/new?api_key=a7e38c80a0efc42034dfb5c8b95a72cb")
+    @GET("authentication/token/new")
     suspend fun getRequestToken(): RequestToken
 
-    @POST("authentication/token/validate_with_login?api_key=a7e38c80a0efc42034dfb5c8b95a72cb")
+    @POST("authentication/token/validate_with_login")
     suspend fun login(@Body loginBody: LoginBody): RequestToken
 
-    @GET("trending/all/day?api_key=a7e38c80a0efc42034dfb5c8b95a72cb")
-    suspend fun getListMovieTrending() : Movie
+    @GET("trending/all/day")
+    suspend fun getListMovieTrending() : Result
 
-    @GET("movie/popular?api_key=a7e38c80a0efc42034dfb5c8b95a72cb")
-    suspend fun getListMoviePopular() : Movie
+    @GET("movie/popular")
+    suspend fun getListMoviePopular() : Result
 
 
-    @GET("movie/now_playing?api_key=a7e38c80a0efc42034dfb5c8b95a72cb")
-    suspend fun getListMoviePlaying() : Movie
+    @GET("movie/now_playing")
+    suspend fun getListMoviePlaying() : Result
 
-    @GET("movie/top_rated?api_key=a7e38c80a0efc42034dfb5c8b95a72cb")
-    suspend fun getListMovieTopRate() : Movie
+    @GET("movie/top_rated")
+    suspend fun getListMovieTopRate() : Result
 
-    @GET("movie/upcoming?api_key=a7e38c80a0efc42034dfb5c8b95a72cb")
-    suspend fun getListMovieUpcoming() : Movie
+    @GET("movie/upcoming")
+    suspend fun getListMovieUpcoming() : Result
+
+    @GET("/movie/{movie_id}")
+    suspend fun getDetailMovie(
+        @Path("movie_id") movieId : Int,
+        @Query("append_to_response") appendToResponse : String? = null
+    ) : Result
 }
