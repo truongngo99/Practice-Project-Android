@@ -2,6 +2,7 @@ package com.example.practice_project_android.di
 
 import com.example.practice_project_android.BuildConfig
 import com.example.practice_project_android.data.api.ApiService
+import com.example.practice_project_android.data.interceptor.ApiKey
 import com.example.practice_project_android.utils.Constants
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -48,11 +49,12 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideClient(
-
+        apiKey : ApiKey,
         httpLoggingInterceptor: HttpLoggingInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(apiKey)
             .build()
     }
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobie_navigation"
+    app:startDestination="@id/settingsActivity">
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="com.example.practice_project_android.view.home.settings.SettingsFragment"
+        android:label="activity_settings"
+        tools:layout="@layout/fragment_settings" />
+    <activity
+        android:id="@+id/accountActivity"
+        android:name="com.example.practice_project_android.view.home.account.AccountFragment"
+        android:label="activity_account"
+        tools:layout="@layout/fragment_account" />
+    <activity
+        android:id="@+id/movieActivity"
+        android:name="com.example.practice_project_android.view.home.movie.MovieFragment"
+        android:label="MovieActivity" />
+    <activity
+        android:id="@+id/searchActivity"
+        android:name="com.example.practice_project_android.view.home.search.SearchFragment"
+        android:label="activity_search"
+        tools:layout="@layout/fragment_search" />
+</navigation>
