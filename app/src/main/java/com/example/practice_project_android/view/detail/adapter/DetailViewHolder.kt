@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.practice_project_android.R
 import com.example.practice_project_android.data.model.movie.Movie
 import com.example.practice_project_android.databinding.ActivityDetailBinding
-import com.example.practice_project_android.view.home.movie.ItemMovieListener
+import com.example.practice_project_android.view.home.movie.MovieItemListener
 
- class DetailViewHolder(val binding: ActivityDetailBinding) : RecyclerView.ViewHolder(binding.root) {
-    open fun bind(movie:Movie, listener : ItemMovieListener, ){
+class DetailViewHolder(val binding: ActivityDetailBinding) : RecyclerView.ViewHolder(binding.root) {
+    open fun bind(movie:Movie, listener : MovieItemListener, ){
         binding.apply {
             layoutDetail.setOnClickListener {
                 movie.id.let { listener.onClick(movie)}

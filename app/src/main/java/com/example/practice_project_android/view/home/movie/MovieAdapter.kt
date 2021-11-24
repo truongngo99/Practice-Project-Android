@@ -43,8 +43,3 @@ class MovieAdapter : RecyclerView.Adapter<MovieViewHolder>() {
     }
 }
 
-class ItemMovieListener(val clickListener: (movieId: String)-> Unit){
-    fun onClick(movie: Movie)= clickListener(movie.id.toString())
-
-
-}

@@ -14,5 +14,21 @@ data class Movie(
     val title: String?,
     val video: Boolean?,
     val vote_average: Double?,
-    val vote_count: Int?
-)
+    val vote_count: Int?,
+    val budget: Int?,
+    val casts: Casts?,
+    val genres: List<Genre>?,
+    val homepage: String?,
+    val images: Images?,
+    val imdb_id: String?,
+    val production_companies: List<ProductionCompany>?,
+    val production_countries: List<ProductionCountry>?,
+    val revenue: Int?,
+    val reviews: Reviews?,
+    val runtime: Int?,
+    val spoken_languages: List<SpokenLanguage>?,
+    val status: String?,
+    val tagline: String?,
+    val videos: Videos?,
+
+    )
