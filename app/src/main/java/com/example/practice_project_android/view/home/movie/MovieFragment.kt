@@ -5,16 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.example.practice_project_android.R
 import com.example.practice_project_android.databinding.FragmentMovieBinding
-import com.example.practice_project_android.databinding.ItemMoviePopularBinding
-import com.example.practice_project_android.view.detail.DetailActivity
+import com.example.practice_project_android.view.detail.DetailMovieActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlin.math.abs
@@ -60,32 +57,55 @@ class MovieFragment : Fragment() {
         binding.apply {
             rcMovieNowPlaying.adapter = adapterMovieNowPlay.apply {
                 itemClick = {movieId ->
-                    val intent = Intent(context, DetailActivity::class.java)
+                    val intent = Intent(context, DetailMovieActivity::class.java)
+                    intent.putExtra("movieId",movieId)
                     startActivity(intent)
 
                 }
             }
-            rcMoviePopular.adapter = adapterMoviePopular
+            rcMoviePopular.adapter = adapterMoviePopular.apply {
+                itemClick = {movieId ->
+                    val intent = Intent(context, DetailMovieActivity::class.java)
+                    intent.putExtra("movieId",movieId)
+                    startActivity(intent)
 
-            rcMovieTopRate.adapter = adapterMovieTopRate
-            rcMovieUpComing.adapter = adapterMovieUpComing
+                }
+            }
+
+            rcMovieTopRate.adapter = adapterMovieTopRate.apply {
+                itemClick = {movieId ->
+                    val intent = Intent(context, DetailMovieActivity::class.java)
+                    intent.putExtra("movieId",movieId)
+                    startActivity(intent)
+
+                }
+            }
+            rcMovieUpComing.adapter = adapterMovieUpComing.apply {
+                itemClick = {movieId ->
+                    val intent = Intent(context, DetailMovieActivity::class.java)
+                    intent.putExtra("movieId",movieId)
+                    startActivity(intent)
+
+                }
+            }
             pagerTrendingMovie.adapter = adapterMovieTrending
+
         }
         viewModelTrendingMovie.resultMovieTrending.observe(viewLifecycleOwner) {
-            adapterMovieTrending.data = it.results
+            adapterMovieTrending.data = it.results!!
         }
         viewModel.apply {
             resultMovieTopRate.observe(viewLifecycleOwner) {
-                adapterMovieTopRate.data = it.results
+                adapterMovieTopRate.data = it.results!!
             }
             resultMovieNowPlay.observe(viewLifecycleOwner) {
-                adapterMovieNowPlay.data = it.results
+                adapterMovieNowPlay.data = it.results!!
             }
             resultMovieUpCome.observe(viewLifecycleOwner) {
-                adapterMovieUpComing.data = it.results
+                adapterMovieUpComing.data = it.results!!
             }
             resultMoviePopular.observe(viewLifecycleOwner) {
-                adapterMoviePopular.data = it.results
+                adapterMoviePopular.data = it.results!!
             }
 
         }
