@@ -29,9 +29,9 @@ interface ApiService {
     @GET("movie/upcoming")
     suspend fun getListMovieUpcoming() : Result
 
-    @GET("/movie/{movie_id}")
+    @GET("movie/{movie_id}")
     suspend fun getDetailMovie(
         @Path("movie_id") movieId : Int,
         @Query("append_to_response") appendToResponse : String? = null
-    ) : Result
+    ) : Movie
 }
