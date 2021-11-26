@@ -15,6 +15,7 @@ class DetailCasterAdapter : RecyclerView.Adapter<DetailCasterHolder>() {
         field = value
         notifyDataSetChanged()
     }
+    var itemClick : ((Int) -> Unit)? =null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailCasterHolder {
         val inflate= LayoutInflater.from(parent.context)
         val binding = ItemCasterLayoutBinding.inflate(inflate,parent,false)
@@ -27,6 +28,9 @@ class DetailCasterAdapter : RecyclerView.Adapter<DetailCasterHolder>() {
             .placeholder(R.drawable.default_avatar)
             .into(holder.binding.imgCaster)
         holder.binding.tvNameCaster.text = item.name
+        holder.binding.itemCaster.setOnClickListener {
+            item.id?.let { itemClick?.invoke(it) }
+        }
     }
 
     override fun getItemCount(): Int {

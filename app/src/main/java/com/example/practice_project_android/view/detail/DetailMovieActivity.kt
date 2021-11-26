@@ -1,5 +1,6 @@
 package com.example.practice_project_android.view.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -12,6 +13,8 @@ import com.example.practice_project_android.view.detail.adapter.DetailCasterAdap
 import com.example.practice_project_android.view.detail.adapter.DetailCrewAdapter
 import com.example.practice_project_android.view.detail.adapter.DetailReviewAdapter
 import com.example.practice_project_android.view.detail.adapter.DetailTrailerAdapter
+import com.example.practice_project_android.view.detail.caster.DetailCasterActivity
+import com.example.practice_project_android.view.detail.poster.DetailPosterActivity
 import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,10 +33,21 @@ class DetailMovieActivity : AppCompatActivity() {
         setContentView(binding.root)
         movieId = intent.getIntExtra("movieId", 0)
         viewModel.getDetailMovie(movieId)
+        binding.header.imgPoster.setOnClickListener {
+            val intent = Intent(this, DetailPosterActivity::class.java)
+            intent.putExtra("movieId", movieId)
+            startActivity(intent)
+        }
         binding.layoutBody.rcCrew.adapter = adapterCew
         binding.layoutBody.rvReview.adapter = adapterReview
         binding.layoutBody.rcTrailer.adapter = adapterTrailer
-        binding.layoutBody.rcCaster.adapter = adapterCaster
+        binding.layoutBody.rcCaster.adapter = adapterCaster.apply {
+            itemClick = { casterId ->
+                val intent = Intent(this@DetailMovieActivity, DetailCasterActivity::class.java)
+                intent.putExtra("casterId", casterId)
+                startActivity(intent)
+            }
+        }
         viewModel.resultDetailMovie.observe(this) {
             binding.header.apply {
                 Glide.with(root).load("https://image.tmdb.org/t/p/original${it.backdrop_path}")
@@ -46,8 +60,9 @@ class DetailMovieActivity : AppCompatActivity() {
                 tvVoteCount.text = it.vote_count.toString()
 
             }
+
             adapterCaster.data = it.casts?.cast ?: listOf()
-            adapterTrailer.data =it.videos?.results ?: listOf()
+            adapterTrailer.data = it.videos?.results ?: listOf()
             adapterReview.data = it.reviews?.results ?: listOf()
             adapterCew.data = it.casts?.crew ?: listOf()
             binding.layoutBody.tvOverview.text = "\t${it.overview}"
