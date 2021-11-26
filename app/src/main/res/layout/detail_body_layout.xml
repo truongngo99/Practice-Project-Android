@@ -117,7 +117,7 @@
         android:layout_marginTop="@dimen/layout_margin_8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@+id/reviews"
-        tools:itemCount="3"
+        tools:itemCount="5"
         tools:listitem="@layout/item_review_layout"/>
     <View
         android:layout_width="wrap_content"
