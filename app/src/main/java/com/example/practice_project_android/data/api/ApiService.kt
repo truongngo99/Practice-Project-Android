@@ -2,7 +2,9 @@ package com.example.practice_project_android.data.api
 
 import com.example.practice_project_android.data.model.authenticcation.LoginBody
 import com.example.practice_project_android.data.model.authenticcation.RequestToken
+import com.example.practice_project_android.data.model.movie.Images
 import com.example.practice_project_android.data.model.movie.Movie
+import com.example.practice_project_android.data.model.movie.PeopleCast
 import com.example.practice_project_android.data.model.movie.Result
 import retrofit2.http.*
 
@@ -34,4 +36,8 @@ interface ApiService {
         @Path("movie_id") movieId : Int,
         @Query("append_to_response") appendToResponse : String? = null
     ) : Movie
+    @GET("movie/{movie_id}/images")
+    suspend fun getImages(@Path("movie_id") movieId: Int) : Images
+    @GET("person/{cast_id}")
+    suspend fun getInfoCaster(@Path("cast_id") castId: Int) : PeopleCast
 }

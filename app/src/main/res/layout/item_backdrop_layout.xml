@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.imageview.ShapeableImageView android:layout_width="150dp"
+    android:layout_height="90dp"
+    android:id="@+id/img_poster"
+    android:layout_marginEnd="@dimen/layout_margin_8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:src="@tools:sample/avatars"
+    android:scaleType="centerCrop"
+    app:shapeAppearanceOverlay="@style/border_radius_8dp" />

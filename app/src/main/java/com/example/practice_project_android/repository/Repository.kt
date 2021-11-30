@@ -3,7 +3,9 @@ package com.example.practice_project_android.repository
 import com.example.practice_project_android.data.api.ApiService
 import com.example.practice_project_android.data.model.authenticcation.LoginBody
 import com.example.practice_project_android.data.model.authenticcation.RequestToken
+import com.example.practice_project_android.data.model.movie.Images
 import com.example.practice_project_android.data.model.movie.Movie
+import com.example.practice_project_android.data.model.movie.PeopleCast
 import com.example.practice_project_android.data.model.movie.Result
 import javax.inject.Inject
 
@@ -41,5 +43,12 @@ class Repository @Inject constructor( private val apiService: ApiService) {
             movieId = movieId,
             appendToResponse = "images,videos,casts,reviews"
         )
+    }
+
+    suspend fun getImages(movieId: Int) : Images {
+        return apiService.getImages(movieId = movieId)
+    }
+    suspend fun getInfoCaster(castId:Int): PeopleCast{
+        return apiService.getInfoCaster(castId = castId)
     }
 }

@@ -13,6 +13,7 @@ class DetailTrailerAdapter : RecyclerView.Adapter<DetailTrailerHolder>() {
         field = value
         notifyDataSetChanged()
     }
+    var itemClick : ((String) -> Unit)? =null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailTrailerHolder {
         val inflate = LayoutInflater.from(parent.context)
         val binding = ItemTrailerLayoutBinding.inflate(inflate,parent,false)
@@ -21,6 +22,9 @@ class DetailTrailerAdapter : RecyclerView.Adapter<DetailTrailerHolder>() {
 
     override fun onBindViewHolder(holder: DetailTrailerHolder, position: Int) {
         val item = data[position]
+        holder.binding.imgTrailer.setOnClickListener {
+            itemClick?.invoke(item.key ?: "")
+        }
         holder.binding.apply {
             Glide.with(holder.binding.root).load("https://img.youtube.com/vi/${item.key}/0.jpg").into(imgTrailer)
             tvNameTrailer.text = item.name

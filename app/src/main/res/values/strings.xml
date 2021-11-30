@@ -22,4 +22,13 @@
     <string name="cast">Cast:</string>
     <string name="crew">Crew:</string>
     <string name="reviews">Reviews:</string>
+    <string name="personal_info">Person Info</string>
+    <string name="known_for">Know For</string>
+    <string name="known_credits">Know Credits</string>
+    <string name="gender">Gender</string>
+    <string name="birthday">Birthday:</string>
+    <string name="place_of_birth">Place of Birth</string>
+    <string name="career">Career</string>
+    <string name="biography">Biography</string>
+    <string name="about">About:</string>
 </resources>

@@ -11,20 +11,28 @@
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/drawable/ic_person.xml" value="0.26614583333333336" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/drawable/processbar.xml" value="0.26614583333333336" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/activity_account.xml" value="0.12107396149949341" />
+        <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/activity_caster_layout.xml" value="0.25" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/activity_detail.xml" value="0.12195121951219512" />
+        <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/activity_detail_backdrop.xml" value="0.25" />
+        <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/activity_detail_poster.xml" value="0.25" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/activity_movie.xml" value="0.234375" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/activity_settings.xml" value="0.12107396149949341" />
+        <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/activity_youtube_layout.xml" value="0.234375" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/detail_appbar_layout.xml" value="0.264" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/detail_body_layout.xml" value="0.4" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/fragment_movie.xml" value="0.215625" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
+        <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/item_backdrop_layout.xml" value="0.25" />
+        <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/item_caster_layout.xml" value="0.11018518518518519" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/item_movie.xml" value="0.4" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/item_movie_now_playing.xml" value="0.19739583333333333" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/item_movie_popular.xml" value="0.25" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/item_movie_trending.xml" value="0.25" />
+        <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/item_poster_layout.xml" value="0.225" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/item_review_layout.xml" value="0.234375" />
+        <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/personal_info_layout.xml" value="0.25" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/search_activity.xml" value="0.12107396149949341" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/splash_main.xml" value="0.264" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.24583333333333332" />
