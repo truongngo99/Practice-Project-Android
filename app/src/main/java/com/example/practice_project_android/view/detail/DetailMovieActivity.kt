@@ -1,21 +1,20 @@
 package com.example.practice_project_android.view.detail
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.practice_project_android.data.model.movie.Cast
-import com.example.practice_project_android.data.model.movie.Crew
 import com.example.practice_project_android.databinding.ActivityDetailBinding
 import com.example.practice_project_android.view.detail.adapter.DetailCasterAdapter
 import com.example.practice_project_android.view.detail.adapter.DetailCrewAdapter
 import com.example.practice_project_android.view.detail.adapter.DetailReviewAdapter
 import com.example.practice_project_android.view.detail.adapter.DetailTrailerAdapter
+import com.example.practice_project_android.view.detail.backdrop.DetailBackdropActivity
 import com.example.practice_project_android.view.detail.caster.DetailCasterActivity
 import com.example.practice_project_android.view.detail.poster.DetailPosterActivity
-import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,9 +37,22 @@ class DetailMovieActivity : AppCompatActivity() {
             intent.putExtra("movieId", movieId)
             startActivity(intent)
         }
+        binding.header.imgBackdrop.setOnClickListener {
+            val intent = Intent(this, DetailBackdropActivity::class.java)
+            intent.putExtra("movieId", movieId)
+            startActivity(intent)
+        }
         binding.layoutBody.rcCrew.adapter = adapterCew
         binding.layoutBody.rvReview.adapter = adapterReview
-        binding.layoutBody.rcTrailer.adapter = adapterTrailer
+        binding.layoutBody.rcTrailer.adapter = adapterTrailer.apply {
+            itemClick = { key ->
+                val intent = Intent(Intent.ACTION_VIEW)
+
+                intent.data = Uri.parse("vnd.youtube:$key")
+                intent.setPackage("com.google.android.youtube");
+                startActivity(intent)
+            }
+        }
         binding.layoutBody.rcCaster.adapter = adapterCaster.apply {
             itemClick = { casterId ->
                 val intent = Intent(this@DetailMovieActivity, DetailCasterActivity::class.java)
@@ -48,6 +60,13 @@ class DetailMovieActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+        observable()
+        setSupportActionBar(binding.toolBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    private fun observable() {
         viewModel.resultDetailMovie.observe(this) {
             binding.header.apply {
                 Glide.with(root).load("https://image.tmdb.org/t/p/original${it.backdrop_path}")
@@ -69,11 +88,6 @@ class DetailMovieActivity : AppCompatActivity() {
             binding.collapsingToolbarLayout.title = it.title
 
         }
-
-
-        setSupportActionBar(binding.toolBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

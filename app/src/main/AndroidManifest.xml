@@ -18,6 +18,8 @@
         <activity android:name=".view.detail.DetailMovieActivity" />
         <activity android:name=".view.detail.poster.DetailPosterActivity"/>
         <activity android:name=".view.detail.caster.DetailCasterActivity"/>
+        <activity android:name=".view.detail.backdrop.DetailBackdropActivity"/>
+        <activity android:name=".view.detail.trailer.DetailTrailerActivity"/>
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="false" />
