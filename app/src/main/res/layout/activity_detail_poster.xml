@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/rc_images"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/image" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rc_images"
         android:paddingHorizontal="@dimen/layout_margin_16dp"

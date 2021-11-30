@@ -15,6 +15,7 @@ class DetailPosterAdapter : RecyclerView.Adapter<DetailPosterViewHolder>() {
         field = value
         notifyDataSetChanged()
     }
+    var itemClick : ((String) -> Unit)? =null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailPosterViewHolder {
         val inflate = LayoutInflater.from(parent.context)
         val binding = ItemPosterLayoutBinding.inflate(inflate,parent,false)
@@ -23,6 +24,10 @@ class DetailPosterAdapter : RecyclerView.Adapter<DetailPosterViewHolder>() {
 
     override fun onBindViewHolder(holder: DetailPosterViewHolder, position: Int) {
         val item = data[position]
+        holder.binding.root.setOnClickListener {
+            itemClick?.invoke(item.file_path ?: "")
+        }
+
         Glide.with(holder.binding.root).load("https://image.tmdb.org/t/p/w500/${item.file_path}").into(holder.binding.imgPoster)
     }
 
