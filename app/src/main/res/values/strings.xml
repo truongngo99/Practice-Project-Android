@@ -31,4 +31,5 @@
     <string name="career">Career</string>
     <string name="biography">Biography</string>
     <string name="about">About:</string>
+    <string name="search_movie">Search movie:</string>
 </resources>

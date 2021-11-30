@@ -40,4 +40,9 @@ interface ApiService {
     suspend fun getImages(@Path("movie_id") movieId: Int) : Images
     @GET("person/{cast_id}")
     suspend fun getInfoCaster(@Path("cast_id") castId: Int) : PeopleCast
+
+    @GET("search/movie")
+    suspend fun searchMovie(
+        @Query("query") key : String
+    ) : Result
 }

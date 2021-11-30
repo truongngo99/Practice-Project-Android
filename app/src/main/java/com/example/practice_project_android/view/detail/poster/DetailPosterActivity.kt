@@ -35,9 +35,6 @@ class DetailPosterActivity : AppCompatActivity() {
         }
         viewModel.resultImage.observe(this){
             adapterPoster.data = it.posters ?: listOf()
-           //val value = it.posters?.get(0)
-            //Log.d("CCCC",value.toString())
-
             Glide.with(binding.root).load("https://image.tmdb.org/t/p/w500/${it.posters?.get(0)?.file_path}").into(binding.imgPoster)
         }
     }
