@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailMovieActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private val viewModel: DetailMovieViewModel by viewModels()
-    var movieId: Int = 0
+    private var movieId: Int = 0
     private val adapterCaster = DetailCasterAdapter()
     private val adapterCew = DetailCrewAdapter()
     private val adapterTrailer = DetailTrailerAdapter()
@@ -32,16 +32,20 @@ class DetailMovieActivity : AppCompatActivity() {
         setContentView(binding.root)
         movieId = intent.getIntExtra("movieId", 0)
         viewModel.getDetailMovie(movieId)
-        binding.header.imgPoster.setOnClickListener {
-            val intent = Intent(this, DetailPosterActivity::class.java)
-            intent.putExtra("movieId", movieId)
-            startActivity(intent)
-        }
-        binding.header.imgBackdrop.setOnClickListener {
-            val intent = Intent(this, DetailBackdropActivity::class.java)
-            intent.putExtra("movieId", movieId)
-            startActivity(intent)
-        }
+        bindingHeader()
+        bindingBody()
+        observable()
+        supportToolBar()
+
+    }
+
+    private fun supportToolBar() {
+        setSupportActionBar(binding.toolBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    private fun bindingBody() {
         binding.layoutBody.rcCrew.adapter = adapterCew
         binding.layoutBody.rvReview.adapter = adapterReview
         binding.layoutBody.rcTrailer.adapter = adapterTrailer.apply {
@@ -49,7 +53,7 @@ class DetailMovieActivity : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_VIEW)
 
                 intent.data = Uri.parse("vnd.youtube:$key")
-                intent.setPackage("com.google.android.youtube");
+                intent.setPackage("com.google.android.youtube")
                 startActivity(intent)
             }
         }
@@ -60,10 +64,19 @@ class DetailMovieActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        observable()
-        setSupportActionBar(binding.toolBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    private fun bindingHeader() {
+        binding.header.imgPoster.setOnClickListener {
+            val intent = Intent(this, DetailPosterActivity::class.java)
+            intent.putExtra("movieId", movieId)
+            startActivity(intent)
+        }
+        binding.header.imgBackdrop.setOnClickListener {
+            val intent = Intent(this, DetailBackdropActivity::class.java)
+            intent.putExtra("movieId", movieId)
+            startActivity(intent)
+        }
     }
 
     private fun observable() {

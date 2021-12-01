@@ -13,7 +13,6 @@ import javax.inject.Inject
 class HomeActivity : AppCompatActivity() {
     private val currentIndex =0
     private lateinit var binding: ActivityHomeBinding
-    private val sliderDelayJob : Job? = null
     @Inject lateinit var homeViewAdapter: HomeAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.settings -> 3
                 else -> -1
             }
-            binding.pager.setCurrentItem(page)
+            binding.pager.currentItem = page
             true
         }
     }

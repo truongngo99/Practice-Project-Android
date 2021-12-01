@@ -1,15 +1,12 @@
 package com.example.practice_project_android.view.detail.poster
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.practice_project_android.databinding.ActivityDetailPosterBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.log
 
 @AndroidEntryPoint
 class DetailPosterActivity : AppCompatActivity() {
@@ -21,15 +18,11 @@ class DetailPosterActivity : AppCompatActivity() {
         binding = ActivityDetailPosterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val movieId = intent.getIntExtra("movieId",0)
-        setSupportActionBar(binding.toolBar)
-        supportActionBar?.title = ""
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
         viewModel.getImages(movieId)
-
+        supportToolBar()
         binding.rcImages.adapter = adapterPoster.apply {
-            itemClick={imgProflie->
-                Glide.with(binding.root).load("https://image.tmdb.org/t/p/w500/$imgProflie").into(binding.imgPoster)
+            itemClick={imgProfile->
+                Glide.with(binding.root).load("https://image.tmdb.org/t/p/w500/$imgProfile").into(binding.imgPoster)
 
             }
         }
@@ -38,6 +31,14 @@ class DetailPosterActivity : AppCompatActivity() {
             Glide.with(binding.root).load("https://image.tmdb.org/t/p/w500/${it.posters?.get(0)?.file_path}").into(binding.imgPoster)
         }
     }
+
+    private fun supportToolBar() {
+        setSupportActionBar(binding.toolBar)
+        supportActionBar?.title = ""
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {

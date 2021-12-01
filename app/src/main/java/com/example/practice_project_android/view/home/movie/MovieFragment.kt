@@ -32,11 +32,8 @@ class MovieFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMovieBinding.inflate(inflater, container, false)
-
-
-
         return binding.root
     }
 
@@ -44,53 +41,73 @@ class MovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.pagerTrendingMovie.offscreenPageLimit = 3
         makeViewPageSlide()
+        observe()
+        callApiMovie()
+        bindingApdateRc()
+    }
 
-        viewModel.apply {
-            getListMovieNowPlay()
-            getListMoviePopular()
-            getListMovieTopRate()
-            getListMovieUpCome()
-        }
-
-
-        viewModelTrendingMovie.getListMovieTrending()
+    private fun bindingApdateRc() {
         binding.apply {
             rcMovieNowPlaying.adapter = adapterMovieNowPlay.apply {
-                itemClick = {movieId ->
+                itemClick = { movieId ->
                     val intent = Intent(context, DetailMovieActivity::class.java)
-                    intent.putExtra("movieId",movieId)
+                    intent.putExtra("movieId", movieId)
                     startActivity(intent)
-
                 }
             }
             rcMoviePopular.adapter = adapterMoviePopular.apply {
-                itemClick = {movieId ->
+                itemClick = { movieId ->
                     val intent = Intent(context, DetailMovieActivity::class.java)
-                    intent.putExtra("movieId",movieId)
+                    intent.putExtra("movieId", movieId)
                     startActivity(intent)
-
                 }
             }
-
             rcMovieTopRate.adapter = adapterMovieTopRate.apply {
-                itemClick = {movieId ->
+                itemClick = { movieId ->
                     val intent = Intent(context, DetailMovieActivity::class.java)
-                    intent.putExtra("movieId",movieId)
+                    intent.putExtra("movieId", movieId)
                     startActivity(intent)
 
                 }
             }
             rcMovieUpComing.adapter = adapterMovieUpComing.apply {
-                itemClick = {movieId ->
+                itemClick = { movieId ->
                     val intent = Intent(context, DetailMovieActivity::class.java)
-                    intent.putExtra("movieId",movieId)
+                    intent.putExtra("movieId", movieId)
                     startActivity(intent)
-
                 }
             }
             pagerTrendingMovie.adapter = adapterMovieTrending
-
         }
+    }
+
+    private fun makeSlider() {
+        val transformer = CompositePageTransformer()
+        transformer.addTransformer(MarginPageTransformer(40))
+        transformer.addTransformer { page, position ->
+            val r = 1 - abs(position)
+            page.scaleY = 0.85f + r * 0.15f
+        }
+        binding.pagerTrendingMovie.setPageTransformer(transformer)
+    }
+
+    private fun makeViewPageSlide() {
+        makeSlider()
+        binding.pagerTrendingMovie.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                sliderDelay?.cancel()
+                sliderDelay = sliderScope.launch {
+                    delay(2000L)
+                    binding.pagerTrendingMovie.currentItem =
+                        (binding.pagerTrendingMovie.currentItem + 1) % adapterMovieTrending.itemCount
+                }
+            }
+        })
+    }
+
+    private fun observe() {
         viewModelTrendingMovie.resultMovieTrending.observe(viewLifecycleOwner) {
             adapterMovieTrending.data = it.results!!
         }
@@ -111,32 +128,13 @@ class MovieFragment : Fragment() {
         }
     }
 
-    private fun makeSlider() {
-        val transformer = CompositePageTransformer()
-        transformer.addTransformer(MarginPageTransformer(40))
-        transformer.addTransformer(ViewPager2.PageTransformer { page, position ->
-            val r = 1 - abs(position)
-            page.scaleY = 0.85f + r * 0.15f
-        })
-        binding.pagerTrendingMovie.setPageTransformer(transformer)
+    private fun callApiMovie() {
+        viewModel.apply {
+            getListMovieNowPlay()
+            getListMoviePopular()
+            getListMovieTopRate()
+            getListMovieUpCome()
+        }
+        viewModelTrendingMovie.getListMovieTrending()
     }
-
-
-    private fun makeViewPageSlide() {
-        makeSlider()
-        binding.pagerTrendingMovie.registerOnPageChangeCallback(object :
-            ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                sliderDelay?.cancel()
-                sliderDelay = sliderScope.launch {
-                    delay(2000L)
-                    binding.pagerTrendingMovie.currentItem =
-                        (binding.pagerTrendingMovie.currentItem + 1) % adapterMovieTrending.itemCount
-                }
-            }
-        })
-    }
-
-
 }

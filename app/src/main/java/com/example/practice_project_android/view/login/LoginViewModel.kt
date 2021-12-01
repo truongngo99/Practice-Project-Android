@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.practice_project_android.data.model.authenticcation.LoginBody
 import com.example.practice_project_android.data.model.authenticcation.RequestToken
 import com.example.practice_project_android.repository.Repository
-import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,7 +18,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor( private val repository: Repository)
     : ViewModel() {
      val result  = MutableLiveData<RequestToken>()
-    val loginFaile = MutableLiveData<String?>()
+    val loginFailure = MutableLiveData<String?>()
     @Inject lateinit var sharedPreferences: SharedPreferences
     fun login(username : String, password : String){
         viewModelScope.launch(Dispatchers.IO) {
@@ -35,7 +34,7 @@ class LoginViewModel @Inject constructor( private val repository: Repository)
                 }
             } catch (e : Exception) {
                 withContext(Dispatchers.Main){
-                    loginFaile.value = e.message
+                    loginFailure.value = e.message
                 }
             }
 

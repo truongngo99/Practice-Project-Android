@@ -13,6 +13,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
         field = value
         notifyDataSetChanged()
     }
+    var itemClick : ((Int)-> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val inflate = LayoutInflater.from(parent.context)
         val binding = ItemSearchLayoutBinding.inflate(inflate,parent,false)
@@ -25,6 +26,9 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
             Glide.with(root.context).load("https://image.tmdb.org/t/p/original${item.poster_path}").into(imgPoster)
             tvTitleMovie.text =item.title
             tvDate.text =item.release_date
+            itemSearch.setOnClickListener {
+                itemClick?.invoke(item.id ?: 0)
+            }
         }
     }
 

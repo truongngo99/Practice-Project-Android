@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailCasterViewModel @Inject constructor(val repository: Repository) : ViewModel() {
     val resultInfoCaster = MutableLiveData<PeopleCast>()
-    val failure = MutableLiveData<String>()
+    private val failure = MutableLiveData<String>()
     fun getInfoCaster(castId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val infoCaster = repository.getInfoCaster(castId)

@@ -52,13 +52,13 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
-        viewModel.loginFaile.observe(this){
+        viewModel.loginFailure.observe(this){
             Toast.makeText(this, "Login failure!", Toast.LENGTH_LONG).show()
         }
     }
     private fun login(username: String, password: String) {
-        var edtUser : String = binding.edtUsername.text.toString()
-            var edtPass : String = binding.edtPassword.text.toString()
+        val edtUser : String = binding.edtUsername.text.toString()
+            val edtPass : String = binding.edtPassword.text.toString()
             if(edtUser.isEmpty()){
                 binding.tvErrorUsername.visibility = View.VISIBLE
 

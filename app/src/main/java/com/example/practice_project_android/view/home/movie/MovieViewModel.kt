@@ -13,7 +13,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
-    val resultMovieTrending = MutableLiveData<Result>()
     val resultMoviePopular = MutableLiveData<Result>()
     val resultMovieNowPlay = MutableLiveData<Result>()
     val resultMovieTopRate = MutableLiveData<Result>()
