@@ -14,8 +14,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.create
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -61,5 +59,5 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideService(retrofit: Retrofit) =  retrofit.create(ApiService::class.java)
+    fun provideService(retrofit: Retrofit): ApiService =  retrofit.create(ApiService::class.java)
 }

@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.practice_project_android.data.model.movie.Images
 import com.example.practice_project_android.data.model.movie.Poster
-import com.example.practice_project_android.databinding.ActivityDetailPosterBinding
 import com.example.practice_project_android.databinding.ItemPosterLayoutBinding
 
 class DetailPosterAdapter : RecyclerView.Adapter<DetailPosterViewHolder>() {

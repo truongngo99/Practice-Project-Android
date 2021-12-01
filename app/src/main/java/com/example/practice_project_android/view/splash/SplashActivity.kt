@@ -1,16 +1,11 @@
 package com.example.practice_project_android.view.splash
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import com.example.practice_project_android.R
 import com.example.practice_project_android.view.login.LoginActivity
-
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -35,10 +30,6 @@ class SplashActivity : AppCompatActivity() {
 
     private fun loadData() {
         viewModel.getToken()
-    }
-
-    private fun getToken() {
-
     }
 
 

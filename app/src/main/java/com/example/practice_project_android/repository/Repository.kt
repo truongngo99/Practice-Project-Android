@@ -51,4 +51,8 @@ class Repository @Inject constructor( private val apiService: ApiService) {
     suspend fun getInfoCaster(castId:Int): PeopleCast{
         return apiService.getInfoCaster(castId = castId)
     }
+
+    suspend fun searchMovie(keySearch: String) : Result{
+        return apiService.searchMovie(key = keySearch)
+    }
 }

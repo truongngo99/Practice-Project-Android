@@ -26,8 +26,8 @@ class DetailBackdropActivity : AppCompatActivity() {
         viewModel.getImages(movieId)
 
         binding.rcImages.adapter = adapterBackdrop.apply {
-            itemClick={imgProflie->
-                Glide.with(binding.root).load("https://image.tmdb.org/t/p/w500/$imgProflie").into(binding.imgPoster)
+            itemClick={imgProfile->
+                Glide.with(binding.root).load("https://image.tmdb.org/t/p/w500/$imgProfile").into(binding.imgPoster)
 
             }
         }

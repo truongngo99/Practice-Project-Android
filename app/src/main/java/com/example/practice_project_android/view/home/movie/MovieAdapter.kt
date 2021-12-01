@@ -1,11 +1,9 @@
 package com.example.practice_project_android.view.home.movie
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.practice_project_android.data.model.movie.Result
 import com.example.practice_project_android.data.model.movie.Movie
 import com.example.practice_project_android.databinding.ItemMoviePopularBinding
 

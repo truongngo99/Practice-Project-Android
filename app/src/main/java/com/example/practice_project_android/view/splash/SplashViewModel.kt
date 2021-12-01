@@ -11,7 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import android.content.Context as Context1
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
