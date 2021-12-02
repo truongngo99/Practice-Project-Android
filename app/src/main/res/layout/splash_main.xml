@@ -17,11 +17,11 @@
         android:src="@drawable/logo" />
 
     <ProgressBar
-        android:layout_centerHorizontal="true"
         android:id="@+id/progress_circular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_logo"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="-99dp"
         android:indeterminateDrawable="@drawable/progressbar" />
 
