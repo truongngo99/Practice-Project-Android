@@ -19,13 +19,14 @@ class SplashActivity : AppCompatActivity() {
         loadData()
         observable()
 
-
     }
+
 
     private fun observable() {
         viewModel.result.observe(this) {
             val intent = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
