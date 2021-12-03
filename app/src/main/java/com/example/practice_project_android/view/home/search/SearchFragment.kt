@@ -63,40 +63,40 @@ class SearchFragment : Fragment() {
                 startActivity(intent)
             }
         }
-        binding.edtSearch.setOnEditorActionListener { _, i, keyEvent ->
-            if (i == EditorInfo.IME_ACTION_DONE){
-                viewModel.searchMovie(binding.edtSearch.text.toString())
-                true
-            }
-             false
-        }
-//        binding.edtSearch.addTextChangedListener(
-//            object : TextWatcher {
-//                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-//                override fun beforeTextChanged(
-//                    s: CharSequence,
-//                    start: Int,
-//                    count: Int,
-//                    after: Int
-//                ) {
-//                }
-//                private var handler: Handler = Handler(Looper.getMainLooper())
-//                private val DELAY: Long = 1000 // Milliseconds
-//                override fun afterTextChanged(s: Editable) {
-//                    Log.d("postDelay", s.toString())
-//                    handler.postDelayed({
-//                        if (binding.edtSearch.text.isNullOrEmpty()){
-//                            hideKeyboard()
-//
-//                        } else {
-//                            hideKeyboard()
-//                            viewModel.searchMovie(binding.edtSearch.text.toString())
-//                        }
-//                    },3000)
-//
-//                }
+//        binding.edtSearch.setOnEditorActionListener { _, i, keyEvent ->
+//            if (i == EditorInfo.IME_ACTION_DONE){
+//                viewModel.searchMovie(binding.edtSearch.text.toString())
+//                true
 //            }
-//        )
+//             false
+//        }
+        binding.edtSearch.addTextChangedListener(
+            object : TextWatcher {
+                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+                override fun beforeTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+                private var handler: Handler = Handler(Looper.getMainLooper())
+                private val DELAY: Long = 1000 // Milliseconds
+                override fun afterTextChanged(s: Editable) {
+                    Log.d("postDelay", s.toString())
+                    handler.postDelayed({
+                        if (binding.edtSearch.text.isNullOrEmpty()){
+                            hideKeyboard()
+
+                        } else {
+                            hideKeyboard()
+                            viewModel.searchMovie(binding.edtSearch.text.toString())
+                        }
+                    },3000)
+
+                }
+            }
+        )
 
 
     }

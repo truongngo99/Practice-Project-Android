@@ -5,7 +5,6 @@
         <item name="colorPrimary">@color/background_splash</item>
         <item name="colorPrimaryVariant">@color/background_splash</item>
         <item name="colorOnPrimary">@color/background_splash</item>
-        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/background_splash</item>
 <!--        <item name="android:background">@color/background_splash</item>-->
 <!--        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>-->
         <!-- Secondary brand color. -->
@@ -22,6 +21,14 @@
     </style>
     <style name="TransparentTitleAppBar" parent="@android:style/TextAppearance">
         <item name="android:textColor">@android:color/transparent</item>
+    </style>
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="colorPrimary">@color/background_splash</item>
+        <item name="colorPrimaryDark">@color/color_edt</item>
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/background_splash</item>
+        <item name="colorAccent">@color/color_edt</item>
+
     </style>
 
 </resources>
