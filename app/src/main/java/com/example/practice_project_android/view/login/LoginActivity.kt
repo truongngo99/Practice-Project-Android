@@ -1,9 +1,12 @@
 package com.example.practice_project_android.view.login
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.practice_project_android.databinding.ActivityLoginBinding
@@ -12,8 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
-    private val viewModel : LoginViewModel by viewModels()
-    private lateinit var binding : ActivityLoginBinding
+    private val viewModel: LoginViewModel by viewModels()
+    private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -22,58 +25,55 @@ class LoginActivity : AppCompatActivity() {
 
         observable()
         binding.btnLogin.setOnClickListener {
-            login(binding.edtUsername.text.toString(),binding.edtPassword.text.toString())
+
+            hideKeyboard()
+            login(binding.edtUsername.text.toString(), binding.edtPassword.text.toString())
 
         }
-        //login()
-//        btnLogin.setOnClickListener(View.OnClickListener {
-//            var edtUser : String = edtUsername.text.toString()
-//            var edtPass : String = edtPassword.text.toString()
-//            if(edtUser.isEmpty()){
-//                tvErrorUser.visibility = View.VISIBLE
-//
-//                tvErrorUser.text ="Please enter your name or password"
-//
-//            } else {
-//                tvErrorUser.visibility = View.GONE
-//
-//            }
-//            if (edtPass.isEmpty()){
-//                tvErrorPass.visibility = View.VISIBLE
-//                tvErrorPass.text ="Please enter your name or password"
-//            } else {
-//                tvErrorPass.visibility = View.GONE
-//            }
-//        })
     }
-    private fun observable(){
-        viewModel.result.observe(this){
+
+    private fun Activity.hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
+        currentFocus?.clearFocus()
+    }
+
+    private fun observable() {
+        viewModel.result.observe(this) {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
 
         }
-        viewModel.loginFailure.observe(this){
+        viewModel.loginFailure.observe(this) {
+            binding.progressBar.visibility = View.INVISIBLE
+            binding.btnLogin.visibility = View.VISIBLE
             Toast.makeText(this, "Login failure!", Toast.LENGTH_LONG).show()
         }
     }
+
     private fun login(username: String, password: String) {
-        val edtUser : String = binding.edtUsername.text.toString()
-            val edtPass : String = binding.edtPassword.text.toString()
-            if(edtUser.isEmpty()){
-                binding.tvErrorUsername.visibility = View.VISIBLE
+        if(validate(username,password)){
+            viewModel.login(username, password)
+        }
 
-                binding.tvErrorUsername.text ="Please enter your name or password"
+    }
 
-            } else {
-                binding.tvErrorUsername.visibility = View.GONE
-
-            }
-            if (edtPass.isEmpty()){
-                binding.tvErrorPassword.visibility = View.VISIBLE
-                binding.tvErrorPassword.text ="Please enter your name or password"
-            } else {
-                binding.tvErrorPassword.visibility = View.GONE
-            }
-        viewModel.login(username,password)
+    private fun validate(username: String, password: String): Boolean {
+        var isValidate = true
+        binding.btnLogin.visibility = View.INVISIBLE
+        binding.progressBar.visibility = View.VISIBLE
+        if(username.isEmpty()){
+            binding.edtUsername.error = "Please enter your name"
+            binding.btnLogin.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.INVISIBLE
+            isValidate = false
+        }
+        if(password.isEmpty()){
+            binding.edtPassword.error = "Please enter your password"
+            binding.btnLogin.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.INVISIBLE
+            isValidate = false
+        }
+        return isValidate
     }
 }

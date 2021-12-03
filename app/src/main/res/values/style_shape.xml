@@ -9,6 +9,10 @@
         <item name="cornerSize">8dp</item>
         <item name="cornerFamily">rounded</item>
     </style>
+    <style name="border_radius_60dp">
+        <item name="cornerSize">60dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
 
     <style name="border_radius_24dp">
         <item name="cornerSize">24dp</item>

@@ -14,6 +14,7 @@
         android:theme="@style/Theme.PracticeProjectAndroid">
         <activity
             android:name=".view.home.HomeActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity android:name=".view.detail.DetailMovieActivity" />
         <activity android:name=".view.detail.poster.DetailPosterActivity"/>
@@ -24,6 +25,7 @@
             android:exported="false" />
         <activity
             android:name=".view.splash.SplashActivity"
+            android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

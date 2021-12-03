@@ -15,13 +15,16 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailMovieViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
     val resultDetailMovie = MutableLiveData<Movie>()
+    val isLoading = MutableLiveData<Boolean>()
     val failure = MutableLiveData<String>()
     fun getDetailMovie(movieId:Int){
+        isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             val detailMovie = repository.getDetailMovie(movieId)
             try {
                 withContext(Dispatchers.Main){
                     resultDetailMovie.value = detailMovie
+                    isLoading.value =false
                 }
             } catch (e:Exception){
                 failure.value = e.toString()
