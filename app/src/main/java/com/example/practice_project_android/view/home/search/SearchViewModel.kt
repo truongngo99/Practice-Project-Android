@@ -15,18 +15,23 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val repository: Repository) :ViewModel() {
     val resultSearch = MutableLiveData<Result>()
+    val isLoading = MutableLiveData<Boolean>()
     val failure = MutableLiveData<String>()
 
     fun searchMovie(key:String){
+        isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             val repoSearch = repository.searchMovie(key)
-            try {
-                withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main){
+                try {
                     resultSearch.value = repoSearch
+                    isLoading.value = false
+                } catch (e:Exception){
+                    failure.value = e.toString()
                 }
-            } catch (e:Exception){
-                failure.value = e.toString()
+
             }
+
         }
     }
 }

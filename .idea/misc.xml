@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19270833333333334" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/drawable/color_orange_cursor.xml" value="0.26614583333333336" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/drawable/corner_icon.xml" value="0.23148148148148148" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/drawable/corner_poster_movie.xml" value="0.26614583333333336" />
@@ -27,7 +28,7 @@
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/detail_appbar_layout.xml" value="0.264" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/detail_body_layout.xml" value="0.4" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/fragment_movie.xml" value="0.215625" />
-        <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/fragment_search.xml" value="0.4" />
+        <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/fragment_search.xml" value="0.264" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/item_backdrop_layout.xml" value="0.25" />
         <entry key="..\:/androidproject/PracticeProjectAndroid/app/src/main/res/layout/item_caster_layout.xml" value="0.11018518518518519" />

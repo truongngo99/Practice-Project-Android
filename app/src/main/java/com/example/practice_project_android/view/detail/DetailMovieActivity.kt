@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.practice_project_android.databinding.ActivityDetailBinding
 import com.example.practice_project_android.view.detail.adapter.DetailCasterAdapter
@@ -92,7 +93,6 @@ class DetailMovieActivity : AppCompatActivity() {
                 tvVoteCount.text = it.vote_count.toString()
 
             }
-
             adapterCaster.data = it.casts?.cast ?: listOf()
             adapterTrailer.data = it.videos?.results ?: listOf()
             adapterReview.data = it.reviews?.results ?: listOf()
@@ -100,6 +100,10 @@ class DetailMovieActivity : AppCompatActivity() {
             binding.layoutBody.tvOverview.text = "\t${it.overview}"
             binding.collapsingToolbarLayout.title = it.title
 
+        }
+        viewModel.isLoading.observe(this){
+            binding.progressCircular.isVisible = it
+            binding.layoutDetail.isVisible = !it
         }
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -20,7 +21,6 @@ import kotlin.math.abs
 class MovieFragment : Fragment() {
     lateinit var binding: FragmentMovieBinding
     private val viewModel: MovieViewModel by viewModels()
-    private val viewModelTrendingMovie: MovieTrendingViewModel by viewModels()
     private val adapterMovieTrending = MovieTrendingAdapter()
     private val adapterMoviePopular = MovieAdapter()
     private val adapterMovieNowPlay = MovieAdapter()
@@ -108,12 +108,16 @@ class MovieFragment : Fragment() {
     }
 
     private fun observe() {
-        viewModelTrendingMovie.resultMovieTrending.observe(viewLifecycleOwner) {
-            adapterMovieTrending.data = it.results!!
-        }
         viewModel.apply {
+            isLoading.observe(viewLifecycleOwner){
+                binding.progressBar.isVisible = it
+                binding.scrollView.isVisible = !it
+            }
             resultMovieTopRate.observe(viewLifecycleOwner) {
                 adapterMovieTopRate.data = it.results!!
+            }
+            resultMovieTrending.observe(viewLifecycleOwner) {
+                adapterMovieTrending.data = it.results!!
             }
             resultMovieNowPlay.observe(viewLifecycleOwner) {
                 adapterMovieNowPlay.data = it.results!!
@@ -129,12 +133,6 @@ class MovieFragment : Fragment() {
     }
 
     private fun callApiMovie() {
-        viewModel.apply {
-            getListMovieNowPlay()
-            getListMoviePopular()
-            getListMovieTopRate()
-            getListMovieUpCome()
-        }
-        viewModelTrendingMovie.getListMovieTrending()
+        viewModel.getApiMovie()
     }
 }
