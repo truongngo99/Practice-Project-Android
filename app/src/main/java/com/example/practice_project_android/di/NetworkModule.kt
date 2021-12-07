@@ -21,13 +21,12 @@ import javax.inject.Singleton
 object NetworkModule {
     @Provides
     @Singleton
-    fun provideRetrofit(moshi: Moshi, client: OkHttpClient) :Retrofit{
-       return Retrofit.Builder()
+    fun provideRetrofit(moshi: Moshi, client: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
-           .client(client)
+            .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
-
     }
 
     @Singleton
@@ -40,14 +39,14 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofitMoshi():Moshi{
+    fun provideRetrofitMoshi(): Moshi {
         return Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
     }
 
     @Singleton
     @Provides
     fun provideClient(
-        apiKey : ApiKey,
+        apiKey: ApiKey,
         httpLoggingInterceptor: HttpLoggingInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
@@ -56,8 +55,7 @@ object NetworkModule {
             .build()
     }
 
-
     @Provides
     @Singleton
-    fun provideService(retrofit: Retrofit): ApiService =  retrofit.create(ApiService::class.java)
+    fun provideService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 }

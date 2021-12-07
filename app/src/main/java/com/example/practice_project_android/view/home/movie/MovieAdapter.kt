@@ -13,8 +13,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieViewHolder>() {
             field = value
             notifyDataSetChanged()
         }
-    var itemClick : ((Int) -> Unit)? =null
-
+    var itemClick: ((Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -29,15 +28,13 @@ class MovieAdapter : RecyclerView.Adapter<MovieViewHolder>() {
             tvTitleMovie.text = item.title
             Glide.with(root.context).load("https://image.tmdb.org/t/p/original${item.poster_path}")
                 .into(imgPoster)
-            itemMovie.setOnClickListener{
+            itemMovie.setOnClickListener {
                 item.id?.let { itemClick?.invoke(it) }
             }
         }
-
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
 }
-

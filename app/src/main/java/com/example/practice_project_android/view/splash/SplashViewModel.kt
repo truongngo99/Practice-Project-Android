@@ -31,11 +31,9 @@ class SplashViewModel @Inject constructor(private val repository: Repository) : 
                         result.value = myRequestToken
                     }
                 }
-            } catch (e:Exception){
+            } catch (e: Exception) {
                 failure.value = e.toString()
             }
-
-
         }
     }
 }

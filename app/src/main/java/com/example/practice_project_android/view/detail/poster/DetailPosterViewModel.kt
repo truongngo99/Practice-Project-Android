@@ -17,18 +17,18 @@ class DetailPosterViewModel @Inject constructor(private val repository: Reposito
     var resultImage = MutableLiveData<Images>()
     val isLoading = MutableLiveData<Boolean>()
     val failure = MutableLiveData<String>()
-     fun getImages(movieId:Int){
-         isLoading.value = true
-       viewModelScope.launch(Dispatchers.IO) {
-           val listImage = repository.getImages(movieId)
-           try {
-               withContext(Dispatchers.Main){
-                   resultImage.value = listImage
-                   isLoading.value = false
-               }
-           } catch (e:Exception){
-               failure.value = e.toString()
-           }
-       }
+    fun getImages(movieId: Int) {
+        isLoading.value = true
+        viewModelScope.launch(Dispatchers.IO) {
+            val listImage = repository.getImages(movieId)
+            try {
+                withContext(Dispatchers.Main) {
+                    resultImage.value = listImage
+                    isLoading.value = false
+                }
+            } catch (e: Exception) {
+                failure.value = e.toString()
+            }
+        }
     }
 }

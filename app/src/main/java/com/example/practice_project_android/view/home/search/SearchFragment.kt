@@ -3,28 +3,27 @@ package com.example.practice_project_android.view.home.search
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.practice_project_android.databinding.FragmentSearchBinding
 import com.example.practice_project_android.view.detail.DetailMovieActivity
 import dagger.hilt.android.AndroidEntryPoint
 
-import android.view.inputmethod.InputMethodManager
-import androidx.core.view.isVisible
-import android.os.Handler
-import android.os.Looper
-import android.view.View.OnFocusChangeListener
-import android.view.inputmethod.EditorInfo
-
-
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
     private val viewModel: SearchViewModel by viewModels()
     private lateinit var binding: FragmentSearchBinding
     private val adapterSearch = SearchAdapter()
+    private val handler = Handler(Looper.getMainLooper())
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,13 +47,12 @@ class SearchFragment : Fragment() {
         binding.edtSearch.setOnEditorActionListener { _, i, keyEvent ->
             if (i == EditorInfo.IME_ACTION_DONE) {
                 viewModel.searchMovie(binding.edtSearch.text.toString())
-                
             }
             false
         }
         binding.edtSearch.onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
-                val handler = Handler(Looper.getMainLooper())
+
                 handler.postDelayed({
                     if (binding.edtSearch.text.isNullOrEmpty()) {
                         hideKeyboard()
@@ -62,14 +60,11 @@ class SearchFragment : Fragment() {
                         hideKeyboard()
                         viewModel.searchMovie(binding.edtSearch.text.toString())
                     }
-
                 }, 3000)
             }
         }
-
-
     }
-    private fun observable(){
+    private fun observable() {
         viewModel.isLoading.observe(viewLifecycleOwner) {
             binding.progressCircular.isVisible = it
             binding.rcSearch.isVisible = !it
@@ -85,5 +80,4 @@ class SearchFragment : Fragment() {
             currentFocus?.clearFocus()
         }
     }
-
 }

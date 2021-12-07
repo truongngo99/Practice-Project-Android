@@ -9,14 +9,14 @@ import com.example.practice_project_android.databinding.ItemPosterLayoutBinding
 
 class DetailPosterAdapter : RecyclerView.Adapter<DetailPosterViewHolder>() {
     var data = listOf<Poster>()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
-    var itemClick : ((String) -> Unit)? =null
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+    var itemClick: ((String) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailPosterViewHolder {
         val inflate = LayoutInflater.from(parent.context)
-        val binding = ItemPosterLayoutBinding.inflate(inflate,parent,false)
+        val binding = ItemPosterLayoutBinding.inflate(inflate, parent, false)
         return DetailPosterViewHolder(binding)
     }
 

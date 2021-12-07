@@ -20,7 +20,7 @@ task ktlint(type: JavaExec, group: "verification") {
 }
 check.dependsOn ktlint
 
-// run this task to fix code style ./gradlew ktlintFormatint
+// run this task to fix code style ./gradlew ktlintFormat
 task ktlintFormat(type: JavaExec, group: "formatting") {
     description = "Fix Kotlin code style deviations."
     main = "com.pinterest.ktlint.Main"

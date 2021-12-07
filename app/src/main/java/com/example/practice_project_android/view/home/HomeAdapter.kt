@@ -10,9 +10,8 @@ import com.example.practice_project_android.view.home.settings.SettingsFragment
 import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
-
 @ActivityScoped
-class HomeAdapter @Inject constructor ( activity : FragmentActivity) : FragmentStateAdapter(activity) {
+class HomeAdapter @Inject constructor(activity: FragmentActivity) : FragmentStateAdapter(activity) {
     private val listFragment = mutableListOf(
         MovieFragment(),
         SearchFragment(),
@@ -20,12 +19,10 @@ class HomeAdapter @Inject constructor ( activity : FragmentActivity) : FragmentS
         SettingsFragment(),
     )
     override fun getItemCount(): Int {
-        return  listFragment.size
+        return listFragment.size
     }
 
     override fun createFragment(position: Int): Fragment {
-        return  listFragment[position]
+        return listFragment[position]
     }
-
-
 }

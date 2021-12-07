@@ -67,7 +67,6 @@ class MovieFragment : Fragment() {
                     val intent = Intent(context, DetailMovieActivity::class.java)
                     intent.putExtra("movieId", movieId)
                     startActivity(intent)
-
                 }
             }
             rcMovieUpComing.adapter = adapterMovieUpComing.apply {
@@ -94,22 +93,22 @@ class MovieFragment : Fragment() {
     private fun makeViewPageSlide() {
         makeSlider()
         binding.pagerTrendingMovie.registerOnPageChangeCallback(object :
-            ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                sliderDelay?.cancel()
-                sliderDelay = sliderScope.launch {
-                    delay(2000L)
-                    binding.pagerTrendingMovie.currentItem =
-                        (binding.pagerTrendingMovie.currentItem + 1) % adapterMovieTrending.itemCount
+                ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    sliderDelay?.cancel()
+                    sliderDelay = sliderScope.launch {
+                        delay(2000L)
+                        binding.pagerTrendingMovie.currentItem =
+                            (binding.pagerTrendingMovie.currentItem + 1) % adapterMovieTrending.itemCount
+                    }
                 }
-            }
-        })
+            })
     }
 
     private fun observe() {
         viewModel.apply {
-            isLoading.observe(viewLifecycleOwner){
+            isLoading.observe(viewLifecycleOwner) {
                 binding.progressBar.isVisible = it
                 binding.scrollView.isVisible = !it
             }
@@ -128,7 +127,6 @@ class MovieFragment : Fragment() {
             resultMoviePopular.observe(viewLifecycleOwner) {
                 adapterMoviePopular.data = it.results!!
             }
-
         }
     }
 

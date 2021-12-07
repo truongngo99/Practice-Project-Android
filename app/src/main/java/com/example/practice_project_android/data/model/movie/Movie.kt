@@ -31,4 +31,4 @@ data class Movie(
     val tagline: String?,
     val videos: Videos?,
 
-    )
+)

@@ -10,14 +10,14 @@ import com.example.practice_project_android.databinding.ItemCasterLayoutBinding
 
 class DetailCasterAdapter : RecyclerView.Adapter<DetailCasterHolder>() {
     var data = listOf<Cast>()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
-    var itemClick : ((Int) -> Unit)? =null
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+    var itemClick: ((Int) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailCasterHolder {
-        val inflate= LayoutInflater.from(parent.context)
-        val binding = ItemCasterLayoutBinding.inflate(inflate,parent,false)
+        val inflate = LayoutInflater.from(parent.context)
+        val binding = ItemCasterLayoutBinding.inflate(inflate, parent, false)
         return DetailCasterHolder(binding)
     }
 

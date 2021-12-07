@@ -15,30 +15,28 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor( private val repository: Repository)
-    : ViewModel() {
-     val result  = MutableLiveData<RequestToken>()
+class LoginViewModel @Inject constructor(private val repository: Repository) :
+    ViewModel() {
+    val result = MutableLiveData<RequestToken>()
     val loginFailure = MutableLiveData<String?>()
     @Inject lateinit var sharedPreferences: SharedPreferences
-    fun login(username : String, password : String){
+    fun login(username: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val token :String?  = sharedPreferences.getString("token", Context.MODE_PRIVATE.toString())
+            val token: String? = sharedPreferences.getString("token", Context.MODE_PRIVATE.toString())
 
-            val bodyLogin = LoginBody(username,password, token!!)
+            val bodyLogin = LoginBody(username, password, token!!)
             try {
                 val myLogin = repository.login(bodyLogin)
-                if (myLogin.success){
-                    withContext(Dispatchers.Main){
+                if (myLogin.success) {
+                    withContext(Dispatchers.Main) {
                         result.value = myLogin
                     }
                 }
-            } catch (e : Exception) {
-                withContext(Dispatchers.Main){
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
                     loginFailure.value = e.message
                 }
             }
-
-
         }
     }
 }

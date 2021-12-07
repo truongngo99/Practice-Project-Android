@@ -12,14 +12,14 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailBackdropActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityDetailBackdropBinding
-    private val viewModel : DetailPosterViewModel by viewModels()
+    private lateinit var binding: ActivityDetailBackdropBinding
+    private val viewModel: DetailPosterViewModel by viewModels()
     private val adapterBackdrop = DetailBackdropAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBackdropBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val movieId = intent.getIntExtra("movieId",0)
+        val movieId = intent.getIntExtra("movieId", 0)
         setSupportActionBar(binding.toolBar)
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -27,16 +27,15 @@ class DetailBackdropActivity : AppCompatActivity() {
         viewModel.getImages(movieId)
 
         binding.rcImages.adapter = adapterBackdrop.apply {
-            itemClick={imgProfile->
+            itemClick = { imgProfile ->
                 Glide.with(binding.root).load("https://image.tmdb.org/t/p/w500/$imgProfile").into(binding.imgPoster)
-
             }
         }
-        viewModel.isLoading.observe(this){
+        viewModel.isLoading.observe(this) {
             binding.progressCircular.isVisible = it
             binding.layoutDetail.isVisible = !it
         }
-        viewModel.resultImage.observe(this){
+        viewModel.resultImage.observe(this) {
             adapterBackdrop.data = it.backdrops ?: listOf()
             Glide.with(binding.root).load("https://image.tmdb.org/t/p/w500/${it.backdrops?.get(0)?.file_path}").into(binding.imgPoster)
         }
