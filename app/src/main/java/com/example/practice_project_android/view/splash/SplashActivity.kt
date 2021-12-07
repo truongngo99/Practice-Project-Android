@@ -2,6 +2,7 @@ package com.example.practice_project_android.view.splash
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.practice_project_android.R
@@ -27,6 +28,9 @@ class SplashActivity : AppCompatActivity() {
             val intent = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
+        }
+        viewModel.failure.observe(this){
+            Toast.makeText(this, "Get Token Failure", Toast.LENGTH_LONG).show()
         }
     }
 

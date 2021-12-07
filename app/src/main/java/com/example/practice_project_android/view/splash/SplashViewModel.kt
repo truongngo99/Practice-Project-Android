@@ -15,20 +15,26 @@ import javax.inject.Inject
 @HiltViewModel
 class SplashViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
     val result = MutableLiveData<RequestToken>()
+    val failure = MutableLiveData<String>()
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
     fun getToken() {
         viewModelScope.launch(Dispatchers.IO) {
             val myRequestToken = repository.getRequestToken()
-            if (myRequestToken.success) {
-                val requestTokenRepository =
-                    sharedPreferences.edit().putString("token", myRequestToken.request_token)
-                        .commit()
-                withContext(Dispatchers.Main) {
-                    result.value = myRequestToken
+            try {
+                if (myRequestToken.success) {
+                    val requestTokenRepository =
+                        sharedPreferences.edit().putString("token", myRequestToken.request_token)
+                            .commit()
+                    withContext(Dispatchers.Main) {
+                        result.value = myRequestToken
+                    }
                 }
+            } catch (e:Exception){
+                failure.value = e.toString()
             }
+
 
         }
     }

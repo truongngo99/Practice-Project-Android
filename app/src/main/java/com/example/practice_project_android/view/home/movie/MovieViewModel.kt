@@ -21,7 +21,7 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
     val resultMovieTrending = MutableLiveData<Result>()
     val isLoading = MutableLiveData<Boolean>()
     val failure = MutableLiveData<String>()
-    val dispatchersIO = Dispatchers.IO
+    private val dispatchersIO = Dispatchers.IO
 
     fun getApiMovie() {
         isLoading.value = true
@@ -49,7 +49,7 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
 
     }
 
-   suspend fun getListMovieTrending() {
+   private suspend fun getListMovieTrending() {
        val movieTrendiness = repository.getListMovieTrending()
        try {
            withContext(Dispatchers.Main) {
@@ -60,7 +60,7 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
        }
     }
 
-   suspend fun getListMoviePopular() {
+   private suspend fun getListMoviePopular() {
        val moviePopular = repository.getListMoviePopular()
        try {
            withContext(Dispatchers.Main) {
@@ -71,7 +71,7 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
        }
     }
 
-   suspend fun getListMovieNowPlay() {
+   private suspend fun getListMovieNowPlay() {
         val movieNowPlay = repository.getListMovieNowPlay()
         try {
             withContext(Dispatchers.Main) {
@@ -82,7 +82,7 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
         }
     }
 
-    suspend fun getListMovieUpCome() {
+    private suspend fun getListMovieUpCome() {
         val movieUpCome = repository.getListMovieUpCome()
         try {
             withContext(Dispatchers.Main) {
@@ -93,7 +93,7 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
         }
     }
 
-    suspend fun getListMovieTopRate() {
+    private suspend fun getListMovieTopRate() {
         val movieTopRate = repository.getListMovieTopRate()
         try {
             withContext(Dispatchers.Main) {

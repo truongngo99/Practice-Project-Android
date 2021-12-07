@@ -1,6 +1,5 @@
 package com.example.practice_project_android.view.home.search
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,27 +11,13 @@ import androidx.fragment.app.viewModels
 import com.example.practice_project_android.databinding.FragmentSearchBinding
 import com.example.practice_project_android.view.detail.DetailMovieActivity
 import dagger.hilt.android.AndroidEntryPoint
-import android.text.Editable
 
-import android.text.TextWatcher
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isVisible
-import com.example.practice_project_android.BaseActivity
-import java.util.*
-import android.content.Context.INPUT_METHOD_SERVICE
-import android.hardware.input.InputManager
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.EditorInfo
-import androidx.core.content.ContextCompat
-
-import androidx.core.content.ContextCompat.getSystemService
-import dagger.hilt.android.internal.ThreadUtil
-import android.widget.EditText
-import com.example.practice_project_android.R
 
 
 @AndroidEntryPoint
@@ -52,13 +37,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.progressCircular.visibility = View.INVISIBLE
-        viewModel.isLoading.observe(viewLifecycleOwner) {
-            binding.progressCircular.isVisible = it
-            binding.rcSearch.isVisible = !it
-        }
-        viewModel.resultSearch.observe(viewLifecycleOwner) {
-            adapterSearch.data = it.results!!
-        }
+        observable()
         binding.rcSearch.adapter = adapterSearch.apply {
             itemClick = {
                 val intent = Intent(context, DetailMovieActivity::class.java)
@@ -90,7 +69,15 @@ class SearchFragment : Fragment() {
 
 
     }
-
+    private fun observable(){
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progressCircular.isVisible = it
+            binding.rcSearch.isVisible = !it
+        }
+        viewModel.resultSearch.observe(viewLifecycleOwner) {
+            adapterSearch.data = it.results!!
+        }
+    }
     private fun hideKeyboard() {
         activity?.run {
             val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
