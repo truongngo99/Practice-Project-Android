@@ -16,33 +16,32 @@ interface ApiService {
     suspend fun login(@Body loginBody: LoginBody): RequestToken
 
     @GET("trending/all/day")
-    suspend fun getListMovieTrending() : Result
+    suspend fun getListMovieTrending(): Result
 
     @GET("movie/popular")
-    suspend fun getListMoviePopular() : Result
-
+    suspend fun getListMoviePopular(): Result
 
     @GET("movie/now_playing")
-    suspend fun getListMoviePlaying() : Result
+    suspend fun getListMoviePlaying(): Result
 
     @GET("movie/top_rated")
-    suspend fun getListMovieTopRate() : Result
+    suspend fun getListMovieTopRate(): Result
 
     @GET("movie/upcoming")
-    suspend fun getListMovieUpcoming() : Result
+    suspend fun getListMovieUpcoming(): Result
 
     @GET("movie/{movie_id}")
     suspend fun getDetailMovie(
-        @Path("movie_id") movieId : Int,
-        @Query("append_to_response") appendToResponse : String? = null
-    ) : Movie
+        @Path("movie_id") movieId: Int,
+        @Query("append_to_response") appendToResponse: String? = null
+    ): Movie
     @GET("movie/{movie_id}/images")
-    suspend fun getImages(@Path("movie_id") movieId: Int) : Images
+    suspend fun getImages(@Path("movie_id") movieId: Int): Images
     @GET("person/{cast_id}")
-    suspend fun getInfoCaster(@Path("cast_id") castId: Int) : PeopleCast
+    suspend fun getInfoCaster(@Path("cast_id") castId: Int): PeopleCast
 
     @GET("search/movie")
     suspend fun searchMovie(
-        @Query("query") key : String
-    ) : Result
+        @Query("query") key: String
+    ): Result
 }

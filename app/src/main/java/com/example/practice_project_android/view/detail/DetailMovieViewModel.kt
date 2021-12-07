@@ -17,19 +17,18 @@ class DetailMovieViewModel @Inject constructor(private val repository: Repositor
     val resultDetailMovie = MutableLiveData<Movie>()
     val isLoading = MutableLiveData<Boolean>()
     val failure = MutableLiveData<String>()
-    fun getDetailMovie(movieId:Int){
+    fun getDetailMovie(movieId: Int) {
         isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             val detailMovie = repository.getDetailMovie(movieId)
             try {
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     resultDetailMovie.value = detailMovie
-                    isLoading.value =false
+                    isLoading.value = false
                 }
-            } catch (e:Exception){
+            } catch (e: Exception) {
                 failure.value = e.toString()
             }
-
         }
     }
 }

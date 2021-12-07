@@ -2,13 +2,12 @@ package com.example.practice_project_android.view.splash
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.practice_project_android.R
 import com.example.practice_project_android.view.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
-
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
@@ -18,9 +17,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.splash_main)
         loadData()
         observable()
-
     }
-
 
     private fun observable() {
         viewModel.result.observe(this) {
@@ -28,11 +25,12 @@ class SplashActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        viewModel.failure.observe(this) {
+            Toast.makeText(this, "Get Token Failure", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun loadData() {
         viewModel.getToken()
     }
-
-
 }

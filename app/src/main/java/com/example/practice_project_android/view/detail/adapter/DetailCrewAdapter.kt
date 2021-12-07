@@ -10,13 +10,13 @@ import com.example.practice_project_android.databinding.ItemCasterLayoutBinding
 
 class DetailCrewAdapter : RecyclerView.Adapter<DetailCasterHolder>() {
     var data = listOf<Crew>()
-    set(value) {
-        field=value
-        notifyDataSetChanged()
-    }
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailCasterHolder {
         val inflate = LayoutInflater.from(parent.context)
-        val binding = ItemCasterLayoutBinding.inflate(inflate,parent,false)
+        val binding = ItemCasterLayoutBinding.inflate(inflate, parent, false)
         return DetailCasterHolder(binding)
     }
 
@@ -26,7 +26,7 @@ class DetailCrewAdapter : RecyclerView.Adapter<DetailCasterHolder>() {
             Glide.with(holder.binding.root.context).load("https://image.tmdb.org/t/p/w500${item.profile_path}")
                 .placeholder(R.drawable.default_avatar)
                 .into(holder.binding.imgCaster)
-            tvNameCaster.text= item.name
+            tvNameCaster.text = item.name
         }
     }
 

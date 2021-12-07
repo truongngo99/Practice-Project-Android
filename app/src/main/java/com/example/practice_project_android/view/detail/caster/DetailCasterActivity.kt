@@ -11,42 +11,39 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailCasterActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityCasterLayoutBinding
-    private val viewModel : DetailCasterViewModel by viewModels()
+    private lateinit var binding: ActivityCasterLayoutBinding
+    private val viewModel: DetailCasterViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCasterLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val casterId = intent.getIntExtra("casterId",0)
+        val casterId = intent.getIntExtra("casterId", 0)
         viewModel.getInfoCaster(casterId)
-        binding.toolbar.title =""
+        binding.toolbar.title = ""
         setSupportActionBar(binding.toolbar)
         observale()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-
     }
 
     private fun observale() {
-        viewModel.isLoading.observe(this){
-            binding.progressCircular.isVisible= it
+        viewModel.isLoading.observe(this) {
+            binding.progressCircular.isVisible = it
             binding.layoutDetailCaster.isVisible = !it
         }
-        viewModel.resultInfoCaster.observe(this){
+        viewModel.resultInfoCaster.observe(this) {
             binding.apply {
                 Glide.with(root).load("https://image.tmdb.org/t/p/original${it.profile_path}").into(imgAvatar)
                 tvName.text = it.name
                 tvAbout.text = "\t${it.biography}"
                 tvDate.text = it.birthday
-                tvPopularity.text= it.popularity.toString()
+                tvPopularity.text = it.popularity.toString()
                 tvPlaceBirthday.text = it.place_of_birth
-                if(it.gender == 1){
+                if (it.gender == 1) {
                     tvGender.text = "Female"
                 } else {
-                    tvGender.text="Male"
+                    tvGender.text = "Male"
                 }
-
-
             }
         }
     }

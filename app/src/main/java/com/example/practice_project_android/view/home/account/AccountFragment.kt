@@ -8,15 +8,13 @@ import androidx.fragment.app.Fragment
 import com.example.practice_project_android.databinding.FragmentAccountBinding
 
 class AccountFragment : Fragment() {
-    private  lateinit var binding : FragmentAccountBinding
+    private lateinit var binding: FragmentAccountBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAccountBinding.inflate(inflater, container, false)
-        return  binding.root
-
+        return binding.root
     }
-
 }

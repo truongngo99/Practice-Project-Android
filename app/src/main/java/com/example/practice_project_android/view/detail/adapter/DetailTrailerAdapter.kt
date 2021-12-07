@@ -9,14 +9,14 @@ import com.example.practice_project_android.databinding.ItemTrailerLayoutBinding
 
 class DetailTrailerAdapter : RecyclerView.Adapter<DetailTrailerHolder>() {
     var data = listOf<ResultVideo>()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
-    var itemClick : ((String) -> Unit)? =null
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+    var itemClick: ((String) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailTrailerHolder {
         val inflate = LayoutInflater.from(parent.context)
-        val binding = ItemTrailerLayoutBinding.inflate(inflate,parent,false)
+        val binding = ItemTrailerLayoutBinding.inflate(inflate, parent, false)
         return DetailTrailerHolder(binding)
     }
 

@@ -14,7 +14,7 @@ import javax.inject.Singleton
 object StorageModule {
     @Provides
     @Singleton
-    fun provideSharePreferences(@ApplicationContext context: Context) : SharedPreferences {
-       return context.getSharedPreferences("com.example.practice_project_android", Context.MODE_PRIVATE)
+    fun provideSharePreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("com.example.practice_project_android", Context.MODE_PRIVATE)
     }
 }

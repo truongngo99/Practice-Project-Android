@@ -9,14 +9,14 @@ import com.example.practice_project_android.databinding.ItemBackdropLayoutBindin
 
 class DetailBackdropAdapter : RecyclerView.Adapter<DetailBackdropViewHolder>() {
     var data = listOf<Backdrop>()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
-    var itemClick  : ((String)->Unit)? = null
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+    var itemClick: ((String) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailBackdropViewHolder {
         val inflate = LayoutInflater.from(parent.context)
-        val binding = ItemBackdropLayoutBinding.inflate(inflate,parent,false)
+        val binding = ItemBackdropLayoutBinding.inflate(inflate, parent, false)
         return DetailBackdropViewHolder(binding)
     }
 

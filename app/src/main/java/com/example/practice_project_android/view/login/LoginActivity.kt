@@ -3,12 +3,12 @@ package com.example.practice_project_android.view.login
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.practice_project_android.databinding.ActivityLoginBinding
 import com.example.practice_project_android.view.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,14 +21,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
         observable()
         binding.btnLogin.setOnClickListener {
 
             hideKeyboard()
             login(binding.edtUsername.text.toString(), binding.edtPassword.text.toString())
-
         }
     }
 
@@ -42,7 +39,6 @@ class LoginActivity : AppCompatActivity() {
         viewModel.result.observe(this) {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-
         }
         viewModel.loginFailure.observe(this) {
             binding.progressBar.visibility = View.INVISIBLE
@@ -52,23 +48,22 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login(username: String, password: String) {
-        if(validate(username,password)){
+        if (validate(username, password)) {
             viewModel.login(username, password)
         }
-
     }
 
     private fun validate(username: String, password: String): Boolean {
         var isValidate = true
         binding.btnLogin.visibility = View.INVISIBLE
         binding.progressBar.visibility = View.VISIBLE
-        if(username.isEmpty()){
+        if (username.isEmpty()) {
             binding.edtUsername.error = "Please enter your name"
             binding.btnLogin.visibility = View.VISIBLE
             binding.progressBar.visibility = View.INVISIBLE
             isValidate = false
         }
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             binding.edtPassword.error = "Please enter your password"
             binding.btnLogin.visibility = View.VISIBLE
             binding.progressBar.visibility = View.INVISIBLE

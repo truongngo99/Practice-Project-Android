@@ -21,12 +21,12 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
     val resultMovieTrending = MutableLiveData<Result>()
     val isLoading = MutableLiveData<Boolean>()
     val failure = MutableLiveData<String>()
-    val dispatchersIO = Dispatchers.IO
+    private val dispatchersIO = Dispatchers.IO
 
     fun getApiMovie() {
         isLoading.value = true
-        viewModelScope.launch(dispatchersIO){
-            val job1 =launch  {
+        viewModelScope.launch(dispatchersIO) {
+            val job1 = launch {
                 getListMovieNowPlay()
             }
             val job2 = launch {
@@ -41,37 +41,36 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
             val job5 = launch {
                 getListMovieTrending()
             }
-            listOf(job1,job2,job3,job4,job5).joinAll()
-            withContext(Dispatchers.Main){
-                isLoading.value =false
+            listOf(job1, job2, job3, job4, job5).joinAll()
+            withContext(Dispatchers.Main) {
+                isLoading.value = false
             }
         }
-
     }
 
-   suspend fun getListMovieTrending() {
-       val movieTrendiness = repository.getListMovieTrending()
-       try {
-           withContext(Dispatchers.Main) {
-               resultMovieTrending.value = movieTrendiness
-           }
-       } catch (e: Exception) {
-           failure.value = e.toString()
-       }
+    private suspend fun getListMovieTrending() {
+        val movieTrendiness = repository.getListMovieTrending()
+        try {
+            withContext(Dispatchers.Main) {
+                resultMovieTrending.value = movieTrendiness
+            }
+        } catch (e: Exception) {
+            failure.value = e.toString()
+        }
     }
 
-   suspend fun getListMoviePopular() {
-       val moviePopular = repository.getListMoviePopular()
-       try {
-           withContext(Dispatchers.Main) {
-               resultMoviePopular.value = moviePopular
-           }
-       } catch (e: Exception) {
-           failure.value = e.toString()
-       }
+    private suspend fun getListMoviePopular() {
+        val moviePopular = repository.getListMoviePopular()
+        try {
+            withContext(Dispatchers.Main) {
+                resultMoviePopular.value = moviePopular
+            }
+        } catch (e: Exception) {
+            failure.value = e.toString()
+        }
     }
 
-   suspend fun getListMovieNowPlay() {
+    private suspend fun getListMovieNowPlay() {
         val movieNowPlay = repository.getListMovieNowPlay()
         try {
             withContext(Dispatchers.Main) {
@@ -82,7 +81,7 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
         }
     }
 
-    suspend fun getListMovieUpCome() {
+    private suspend fun getListMovieUpCome() {
         val movieUpCome = repository.getListMovieUpCome()
         try {
             withContext(Dispatchers.Main) {
@@ -93,7 +92,7 @@ class MovieViewModel @Inject constructor(private val repository: Repository) : V
         }
     }
 
-    suspend fun getListMovieTopRate() {
+    private suspend fun getListMovieTopRate() {
         val movieTopRate = repository.getListMovieTopRate()
         try {
             withContext(Dispatchers.Main) {

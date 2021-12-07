@@ -37,7 +37,6 @@ class DetailMovieActivity : AppCompatActivity() {
         bindingBody()
         observable()
         supportToolBar()
-
     }
 
     private fun supportToolBar() {
@@ -91,7 +90,6 @@ class DetailMovieActivity : AppCompatActivity() {
                 ratingBar.rating = ((it.vote_average ?: 0.0) / 2).toFloat()
                 tvVoteAverage.text = it.vote_average.toString()
                 tvVoteCount.text = it.vote_count.toString()
-
             }
             adapterCaster.data = it.casts?.cast ?: listOf()
             adapterTrailer.data = it.videos?.results ?: listOf()
@@ -99,9 +97,8 @@ class DetailMovieActivity : AppCompatActivity() {
             adapterCew.data = it.casts?.crew ?: listOf()
             binding.layoutBody.tvOverview.text = "\t${it.overview}"
             binding.collapsingToolbarLayout.title = it.title
-
         }
-        viewModel.isLoading.observe(this){
+        viewModel.isLoading.observe(this) {
             binding.progressCircular.isVisible = it
             binding.layoutDetail.isVisible = !it
         }

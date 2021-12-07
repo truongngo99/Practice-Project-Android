@@ -1,17 +1,16 @@
 package com.example.practice_project_android.view.home
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.doOnPreDraw
 import com.example.practice_project_android.R
 import com.example.practice_project_android.databinding.ActivityHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
-    private val currentIndex =0
+    private val currentIndex = 0
     private lateinit var binding: ActivityHomeBinding
     @Inject lateinit var homeViewAdapter: HomeAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,26 +32,25 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    private fun setUpViewPager() {
+        binding.pager.offscreenPageLimit = 4
 
-   private fun setUpViewPager(){
-       binding.pager.offscreenPageLimit =4
-
-       if(binding.pager.adapter == null){
-           binding.pager.adapter = homeViewAdapter
-           setAdapter()
-           if (currentIndex != 0){
-               binding.pager.doOnPreDraw {
-                   binding.pager.currentItem = currentIndex
-               }
-           }
-       }
-       binding.pager.isUserInputEnabled =false
-   }
+        if (binding.pager.adapter == null) {
+            binding.pager.adapter = homeViewAdapter
+            setAdapter()
+            if (currentIndex != 0) {
+                binding.pager.doOnPreDraw {
+                    binding.pager.currentItem = currentIndex
+                }
+            }
+        }
+        binding.pager.isUserInputEnabled = false
+    }
 
     private fun setAdapter() {
-        if(binding.pager.adapter == null){
+        if (binding.pager.adapter == null) {
             binding.pager.adapter = homeViewAdapter
-            if (currentIndex != 0){
+            if (currentIndex != 0) {
                 binding.pager.doOnPreDraw {
                     binding.pager.currentItem = currentIndex
                 }
