@@ -1,26 +1,38 @@
 package com.example.practice_project_android.view.login
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
+import android.content.Context.*
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import com.example.practice_project_android.databinding.ActivityLoginBinding
-import com.example.practice_project_android.view.home.HomeActivity
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.practice_project_android.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginActivity : AppCompatActivity() {
+class LoginFragment : Fragment() {
     private val viewModel: LoginViewModel by viewModels()
-    private lateinit var binding: ActivityLoginBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    private lateinit var binding: FragmentLoginBinding
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
+
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         observable()
         binding.btnLogin.setOnClickListener {
 
@@ -29,21 +41,23 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun Activity.hideKeyboard() {
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
-        currentFocus?.clearFocus()
+
+    private fun hideKeyboard() {
+        val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
+//        val imm = getSystemService(activity.INPUT_METHOD_SERVICE) as InputMethodManager
+//        imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
+//        currentFocus?.clearFocus()
     }
 
     private fun observable() {
-        viewModel.result.observe(this) {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+        viewModel.result.observe(viewLifecycleOwner) {
+            findNavController().navigate(com.example.practice_project_android.R.id.homeFragment)
         }
-        viewModel.loginFailure.observe(this) {
+        viewModel.loginFailure.observe(viewLifecycleOwner) {
             binding.progressBar.visibility = View.INVISIBLE
             binding.btnLogin.visibility = View.VISIBLE
-            Toast.makeText(this, "Login failure!", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, "Login failure!", Toast.LENGTH_LONG).show()
         }
     }
 

@@ -15,7 +15,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.practice_project_android.databinding.FragmentSearchBinding
-import com.example.practice_project_android.view.detail.DetailMovieActivity
+import com.example.practice_project_android.view.detail.DetailMovieFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,7 +39,7 @@ class SearchFragment : Fragment() {
         observable()
         binding.rcSearch.adapter = adapterSearch.apply {
             itemClick = {
-                val intent = Intent(context, DetailMovieActivity::class.java)
+                val intent = Intent(context, DetailMovieFragment::class.java)
                 intent.putExtra("movieId", it)
                 startActivity(intent)
             }

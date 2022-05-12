@@ -2,17 +2,22 @@ package com.example.practice_project_android.view.home.movie
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.practice_project_android.MainFragmentDirections
+import com.example.practice_project_android.R
 import com.example.practice_project_android.databinding.FragmentMovieBinding
-import com.example.practice_project_android.view.detail.DetailMovieActivity
+import com.example.practice_project_android.view.detail.DetailMovieFragment
+import com.example.practice_project_android.view.home.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlin.math.abs
@@ -39,6 +44,7 @@ class MovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.e("movieFragment","tai sao khong chay")
         binding.pagerTrendingMovie.offscreenPageLimit = 3
         makeViewPageSlide()
         observe()
@@ -50,30 +56,27 @@ class MovieFragment : Fragment() {
         binding.apply {
             rcMovieNowPlaying.adapter = adapterMovieNowPlay.apply {
                 itemClick = { movieId ->
-                    val intent = Intent(context, DetailMovieActivity::class.java)
-                    intent.putExtra("movieId", movieId)
-                    startActivity(intent)
+                    val action =  HomeFragmentDirections.actionHomeFragmentToDetailMovieFragment(movieId)
+                    findNavController().navigate(action)
+
                 }
             }
             rcMoviePopular.adapter = adapterMoviePopular.apply {
                 itemClick = { movieId ->
-                    val intent = Intent(context, DetailMovieActivity::class.java)
-                    intent.putExtra("movieId", movieId)
-                    startActivity(intent)
+                    val action =  HomeFragmentDirections.actionHomeFragmentToDetailMovieFragment(movieId)
+                    findNavController().navigate(action)
                 }
             }
             rcMovieTopRate.adapter = adapterMovieTopRate.apply {
                 itemClick = { movieId ->
-                    val intent = Intent(context, DetailMovieActivity::class.java)
-                    intent.putExtra("movieId", movieId)
-                    startActivity(intent)
+                    val action =  HomeFragmentDirections.actionHomeFragmentToDetailMovieFragment(movieId)
+                    findNavController().navigate(action)
                 }
             }
             rcMovieUpComing.adapter = adapterMovieUpComing.apply {
                 itemClick = { movieId ->
-                    val intent = Intent(context, DetailMovieActivity::class.java)
-                    intent.putExtra("movieId", movieId)
-                    startActivity(intent)
+                    val action =  HomeFragmentDirections.actionHomeFragmentToDetailMovieFragment(movieId)
+                    findNavController().navigate(action)
                 }
             }
             pagerTrendingMovie.adapter = adapterMovieTrending

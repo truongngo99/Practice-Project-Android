@@ -3,24 +3,106 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/settingsActivity">
-    <activity
-        android:id="@+id/settingsActivity"
-        android:name="com.example.practice_project_android.view.home.settings.SettingsFragment"
-        android:label="activity_settings"
-        tools:layout="@layout/fragment_settings" />
-    <activity
-        android:id="@+id/accountActivity"
-        android:name="com.example.practice_project_android.view.home.account.AccountFragment"
-        android:label="activity_account"
-        tools:layout="@layout/fragment_account" />
-    <activity
-        android:id="@+id/movieActivity"
-        android:name="com.example.practice_project_android.view.home.movie.MovieFragment"
-        android:label="MovieActivity" />
-    <activity
-        android:id="@+id/searchActivity"
+    app:startDestination="@id/fragment_main">
+    <fragment
+        android:id="@+id/fragment_main"
+        android:name="com.example.practice_project_android.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_fragment_main_to_splashFragment"
+            app:destination="@id/splashFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.practice_project_android.view.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.practice_project_android.view.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.practice_project_android.view.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
         android:name="com.example.practice_project_android.view.home.search.SearchFragment"
-        android:label="activity_search"
+        android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.practice_project_android.view.home.account.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.practice_project_android.view.home.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="com.example.practice_project_android.view.detail.DetailMovieFragment"
+        android:label="DetailMovieFragment" >
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_detailMovieFragment_to_detailPosterFragment"
+            app:destination="@id/detailPosterFragment" />
+        <action
+            android:id="@+id/action_detailMovieFragment_to_detailBackdropFragment"
+            app:destination="@id/detailBackdropFragment" />
+        <action
+            android:id="@+id/action_detailMovieFragment_to_detailCasterFragment"
+            app:destination="@id/detailCasterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPosterFragment"
+        android:name="com.example.practice_project_android.view.detail.poster.DetailPosterFragment"
+        android:label="DetailPosterFragment" >
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailBackdropFragment"
+        android:name="com.example.practice_project_android.view.detail.backdrop.DetailBackdropFragment"
+        android:label="DetailBackdropFragment" >
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailCasterFragment"
+        android:name="com.example.practice_project_android.view.detail.caster.DetailCasterFragment"
+        android:label="DetailCasterFragment" >
+        <argument
+            android:name="casterId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
